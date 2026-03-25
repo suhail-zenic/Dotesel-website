@@ -332,7 +332,7 @@ function App() {
   }
 
   return (
-    <div className="bg-slate-950 text-slate-100 selection:bg-cyan-400 selection:text-slate-900">
+    <div className="min-w-0 overflow-x-clip bg-slate-950 text-slate-100 selection:bg-cyan-400 selection:text-slate-900">
       <div
         className="scroll-progress fixed left-0 top-0 z-[60] h-[2px] w-full bg-transparent"
         aria-hidden
@@ -457,7 +457,7 @@ function App() {
         </section>
       </div>
 
-      <main className="mx-auto w-full max-w-7xl space-y-22 px-6 py-16 lg:px-10">
+      <main className="mx-auto min-w-0 w-full max-w-7xl space-y-22 px-6 py-16 lg:px-10">
         <section className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {trustMarks.map((mark) => (
             <article
@@ -954,7 +954,7 @@ function App() {
               A living architecture model showing how users, data, and AI move through your product.
             </p>
 
-            <div className="relative mt-8 grid place-items-center py-6">
+            <div className="relative mt-8 grid place-items-center overflow-hidden py-6">
               <div className="orbit-ring h-64 w-64 rounded-full border border-cyan-300/30 sm:h-72 sm:w-72" />
               <div className="orbit-ring absolute h-48 w-48 rounded-full border border-indigo-300/30" />
               <div className="orbit-center absolute rounded-full border border-cyan-300/40 bg-cyan-400/15 px-4 py-2 text-xs uppercase tracking-[0.12em] text-cyan-100">

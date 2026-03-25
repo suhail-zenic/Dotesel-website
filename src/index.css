@@ -12,6 +12,8 @@ html,
 body,
 #app {
   min-height: 100%;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body {
