@@ -115,7 +115,7 @@ export default function HomePage() {
             className="lift-card rounded-3xl border border-slate-800/80 bg-gradient-to-b from-slate-900 to-slate-950 p-6 shadow-2xl shadow-slate-950/70 ring-1 ring-white/5 sm:p-8"
           >
             <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Live Performance Snapshot</p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4">
               {stats.map((stat) => (
                 <article
                   key={stat.label}
