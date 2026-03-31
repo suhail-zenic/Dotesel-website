@@ -72,6 +72,8 @@ export function SiteLayout() {
 
       <QuickEnquiryModal />
 
+      <SiteFooter />
+
       {showBackHomeBottom ? (
         <div className="mx-auto w-full max-w-7xl px-6 py-8 lg:px-10">
           <Link
@@ -83,8 +85,6 @@ export function SiteLayout() {
           </Link>
         </div>
       ) : null}
-
-      <SiteFooter />
     </div>
   )
 }
