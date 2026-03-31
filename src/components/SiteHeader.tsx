@@ -21,7 +21,7 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
   return (
     <>
       <header
-        className={`relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6 transition-all duration-300 lg:px-10 ${
+        className={`relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between px-6 pt-4 pb-2 transition-all duration-300 lg:px-10 ${
           elevated ? 'rounded-b-2xl bg-slate-950/75 shadow-lg shadow-slate-950/40 backdrop-blur-md' : ''
         }`}
       >
