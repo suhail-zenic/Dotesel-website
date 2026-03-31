@@ -1160,6 +1160,20 @@ body {
   pointer-events: auto;
 }
 
+@media (hover: none), (pointer: coarse) {
+  .hero-slider-overlay {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .hero-slider .hero-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .hero-slider .hero-stagger > * {
   opacity: 0;
   transform: translateY(10px);

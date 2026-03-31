@@ -29,7 +29,7 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
           <img
             src="/Dotsel.png"
             alt="Dotsel Automation"
-            className="h-36 w-auto object-contain sm:h-40"
+            className="h-24 w-auto object-contain sm:h-28 md:h-32 lg:h-36"
             loading="eager"
             decoding="async"
           />
