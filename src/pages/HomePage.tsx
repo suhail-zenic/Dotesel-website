@@ -119,7 +119,7 @@ export default function HomePage() {
         <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-10 lg:px-10 lg:pb-24">
           <div className="relative left-1/2 w-[96vw] max-w-[1900px] -translate-x-1/2 px-0">
             <div className="hero-slider hero-slider-frame relative overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-slate-900/60 shadow-2xl shadow-slate-950/70 ring-1 ring-white/10 backdrop-blur-md sm:rounded-3xl">
-              <div className="relative aspect-[4/3] w-full sm:aspect-[2/1] lg:aspect-[16/7]">
+              <div className="relative aspect-[5/4] w-full sm:aspect-[2/1] lg:aspect-[16/7]">
                 {heroSlides.map((slide, index) => (
                   <img
                     key={slide.src}
