@@ -5,6 +5,7 @@ type SiteScrollContextValue = {
   menuOpen: boolean
   setMenuOpen: (value: SetStateAction<boolean>) => void
   showBackTop: boolean
+  showStickyCta: boolean
 }
 
 const SiteScrollContext = createContext<SiteScrollContextValue | null>(null)
@@ -13,9 +14,11 @@ export function SiteScrollProvider({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [headerElevated, setHeaderElevated] = useState(false)
   const [showBackTop, setShowBackTop] = useState(false)
+  const [showStickyCta, setShowStickyCta] = useState(false)
   const scrollRafRef = useRef<number | null>(null)
   const lastHeaderElevatedRef = useRef(false)
   const lastShowBackTopRef = useRef(false)
+  const lastShowStickyCtaRef = useRef(false)
 
   useEffect(() => {
     const onScroll = () => {
@@ -25,7 +28,8 @@ export function SiteScrollProvider({ children }: { children: ReactNode }) {
 
         const y = window.scrollY
         const nextHeaderElevated = y > 20
-        const nextShowBackTop = y > 520
+        const nextShowBackTop = y > 420
+        const nextShowStickyCta = y > 280
 
         if (lastHeaderElevatedRef.current !== nextHeaderElevated) {
           lastHeaderElevatedRef.current = nextHeaderElevated
@@ -37,10 +41,16 @@ export function SiteScrollProvider({ children }: { children: ReactNode }) {
           setShowBackTop(nextShowBackTop)
         }
 
+        if (lastShowStickyCtaRef.current !== nextShowStickyCta) {
+          lastShowStickyCtaRef.current = nextShowStickyCta
+          setShowStickyCta(nextShowStickyCta)
+        }
+
         const doc = document.documentElement
         const max = Math.max(doc.scrollHeight - doc.clientHeight, 1)
         const progress = Math.min(y / max, 1)
         doc.style.setProperty('--scroll-progress', progress.toString())
+        doc.style.setProperty('--scroll-progress-pct', `${Math.round(progress * 100)}`)
       })
     }
     onScroll()
@@ -63,7 +73,7 @@ export function SiteScrollProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <SiteScrollContext.Provider value={{ headerElevated, menuOpen, setMenuOpen, showBackTop }}>
+    <SiteScrollContext.Provider value={{ headerElevated, menuOpen, setMenuOpen, showBackTop, showStickyCta }}>
       {children}
     </SiteScrollContext.Provider>
   )

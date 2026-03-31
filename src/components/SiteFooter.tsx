@@ -12,7 +12,7 @@ export function SiteFooter() {
                 <img
                   src="/Dotsel.png"
                   alt="Dotsel Automation"
-                  className="h-20 w-auto object-contain"
+                  className="h-24 w-auto object-contain"
                   loading="lazy"
                   decoding="async"
                 />

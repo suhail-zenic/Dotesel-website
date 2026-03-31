@@ -18,11 +18,10 @@ export default function ContactPage() {
       <main className="mx-auto min-w-0 w-full max-w-7xl px-6 py-16 lg:px-10">
         <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Contact</p>
         <h1 className="mt-3 text-4xl font-semibold leading-tight text-white sm:text-5xl">
-          Let’s scope your next build or automation.
+          Say hello—tell us what you need.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">
-          Send a short brief and we will get back with questions, a suggested approach, and timeline ranges.
-          For faster replies, message us on WhatsApp.
+          Drop a note below or WhatsApp us. We reply with sensible questions and next steps—no pressure.
         </p>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">

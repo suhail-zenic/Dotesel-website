@@ -17,11 +17,10 @@ export default function AboutPage() {
       <main className="mx-auto min-w-0 w-full max-w-7xl px-6 py-16 lg:px-10">
         <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">About Dotsel</p>
         <h1 className="mt-3 text-4xl font-semibold leading-tight text-white sm:text-5xl">
-          A software team obsessed with quality, speed, and real business outcomes.
+          We build software you can explain to your board—and your customers.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">
-          Dotsel Automation partners with founders and operations leaders to ship web apps, mobile products,
-          and AI automations that feel premium, run reliably, and scale with your roadmap.
+          Small, senior-led team. Clear plans. Web, mobile, and automation shipped with quality you can feel.
         </p>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

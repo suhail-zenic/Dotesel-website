@@ -17,11 +17,10 @@ export default function SolutionsPage() {
       <main className="mx-auto min-w-0 w-full max-w-7xl px-6 py-16 lg:px-10">
         <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Solutions</p>
         <h1 className="mt-3 text-4xl font-semibold leading-tight text-white sm:text-5xl">
-          End-to-end software, apps, and AI automation—built for production.
+          What we actually build for you.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">
-          We design and ship digital products with the same care for UX, security, and maintainability—whether
-          you need a customer-facing app, an internal platform, or intelligent automation behind the scenes.
+          Apps, automation, and integrations—scoped so you know what ships when, and what it does for the business.
         </p>
 
         <section className="mt-14">

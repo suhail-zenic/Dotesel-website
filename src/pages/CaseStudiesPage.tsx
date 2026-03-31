@@ -17,11 +17,10 @@ export default function CaseStudiesPage() {
       <main className="mx-auto min-w-0 w-full max-w-7xl px-6 py-16 lg:px-10">
         <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Case Studies</p>
         <h1 className="mt-3 text-4xl font-semibold leading-tight text-white sm:text-5xl">
-          Outcomes from real builds—portal, AI automation, and mobile commerce.
+          Real projects. Clear results.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">
-          Each engagement blends product design, integrations, and reliability work. Summaries below reflect the
-          problems we solved and the impact our clients measured.
+          Short summaries of work we’ve shipped—what changed for the client and by how much.
         </p>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3">

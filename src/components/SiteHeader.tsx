@@ -12,6 +12,8 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
   const location = useLocation()
   const elevated = variant === 'minimal' || headerElevated
 
+  const activePath = location.pathname
+
   useEffect(() => {
     setMenuOpen(false)
   }, [location.pathname, location.hash, setMenuOpen])
@@ -27,18 +29,26 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
           <img
             src="/Dotsel.png"
             alt="Dotsel Automation"
-            className="h-32 w-auto object-contain sm:h-36"
+            className="h-36 w-auto object-contain sm:h-40"
             loading="eager"
             decoding="async"
           />
         </Link>
 
         <nav className="hidden items-center gap-8 text-sm text-slate-200/90 md:flex" aria-label="Primary">
-          {mainNavLinks.map((link) => (
-            <Link key={link.label} to={link.to} className="transition hover:text-cyan-200">
-              {link.label}
-            </Link>
-          ))}
+          {mainNavLinks.map((link) => {
+            const isActive = activePath === link.to
+            return (
+              <Link
+                key={link.label}
+                to={link.to}
+                aria-current={isActive ? 'page' : undefined}
+                className={`transition hover:text-cyan-200 ${isActive ? 'text-cyan-200' : ''}`}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
         </nav>
 
         <Link
@@ -62,11 +72,19 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
       {menuOpen ? (
         <div className="relative mx-6 rounded-xl border border-slate-800/80 bg-slate-900/95 p-4 md:hidden">
           <div className="flex flex-col gap-3">
-            {mainNavLinks.map((link) => (
-              <Link key={link.label} to={link.to} className="rounded-md px-2 py-2 text-sm hover:bg-slate-800">
-                {link.label}
-              </Link>
-            ))}
+            {mainNavLinks.map((link) => {
+              const isActive = activePath === link.to
+              return (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`rounded-md px-2 py-2 text-sm hover:bg-slate-800 ${isActive ? 'bg-slate-800/70 text-cyan-200' : ''}`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
             <Link
               to="/contact"
               className="mt-2 rounded-full bg-cyan-400 px-4 py-2 text-center text-sm font-semibold text-slate-950"

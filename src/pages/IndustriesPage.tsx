@@ -17,11 +17,10 @@ export default function IndustriesPage() {
       <main className="mx-auto min-w-0 w-full max-w-7xl px-6 py-16 lg:px-10">
         <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Industries</p>
         <h1 className="mt-3 text-4xl font-semibold leading-tight text-white sm:text-5xl">
-          Sector-specific software—with the same engineering bar everywhere.
+          Same craft. Tailored to your industry.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">
-          Compliance, buyer expectations, and operational risk change by industry. We adapt architecture,
-          workflows, and AI guardrails while keeping UX fast and teams unblocked.
+          Rules and buyers differ—we adjust UX, data, and automation without confusing your team.
         </p>
 
         <div className="mt-14 grid gap-6 lg:gap-8">

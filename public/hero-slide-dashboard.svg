@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" fill="none">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1600" y2="1100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#030712"/>
+      <stop offset="0.56" stop-color="#111827"/>
+      <stop offset="1" stop-color="#082F49"/>
+    </linearGradient>
+    <radialGradient id="glow3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(760 180) rotate(90) scale(360 580)">
+      <stop stop-color="#67E8F9" stop-opacity="0.36"/>
+      <stop offset="1" stop-color="#67E8F9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1100" fill="url(#bg3)"/>
+  <rect width="1600" height="1100" fill="url(#glow3)"/>
+  <rect x="140" y="140" width="1320" height="820" rx="34" fill="#0B1228" stroke="#334155" stroke-width="2"/>
+  <rect x="210" y="220" width="1180" height="180" rx="18" fill="#0E1B33"/>
+  <path d="M250 330C320 270 360 350 425 310C490 270 555 300 620 270C690 237 760 332 825 300C890 268 960 330 1030 292C1085 262 1140 290 1210 248" stroke="#22D3EE" stroke-width="5" stroke-linecap="round"/>
+  <path d="M250 360C325 340 385 382 458 348C520 320 590 368 662 334C730 300 810 380 882 344C952 308 1010 356 1082 330C1142 308 1200 340 1260 318" stroke="#A78BFA" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+  <rect x="210" y="450" width="560" height="430" rx="18" fill="#0E1B33"/>
+  <rect x="830" y="450" width="560" height="200" rx="18" fill="#0E1B33"/>
+  <rect x="830" y="680" width="560" height="200" rx="18" fill="#0E1B33"/>
+  <rect x="260" y="790" width="70" height="60" rx="10" fill="#22D3EE"/>
+  <rect x="350" y="740" width="70" height="110" rx="10" fill="#38BDF8"/>
+  <rect x="440" y="700" width="70" height="150" rx="10" fill="#60A5FA"/>
+  <rect x="530" y="655" width="70" height="195" rx="10" fill="#818CF8"/>
+  <rect x="620" y="610" width="70" height="240" rx="10" fill="#A78BFA"/>
+  <circle cx="930" cy="550" r="56" fill="#0C4A6E" stroke="#22D3EE" stroke-width="3"/>
+  <circle cx="1030" cy="550" r="56" fill="#172554" stroke="#60A5FA" stroke-width="3"/>
+  <circle cx="1130" cy="550" r="56" fill="#312E81" stroke="#A78BFA" stroke-width="3"/>
+  <rect x="890" y="760" width="430" height="20" rx="10" fill="#1E293B"/>
+  <rect x="890" y="760" width="340" height="20" rx="10" fill="#22D3EE"/>
+</svg>

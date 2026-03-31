@@ -10,24 +10,20 @@ export type Stat = {
 
 export const services: Service[] = [
   {
-    title: 'Custom Web & Mobile Apps',
-    description:
-      'Design and build modern products with clean UX, scalable architecture, and production-grade quality.',
+    title: 'Web & mobile apps',
+    description: 'Clear UX, solid engineering, ready for real users and real traffic.',
   },
   {
-    title: 'AI Automations & Agents',
-    description:
-      'Automate workflows with AI, document processing, chat assistants, and intelligent orchestration.',
+    title: 'AI & automation',
+    description: 'Fewer manual steps—document handling, assistants, and workflow bots your team controls.',
   },
   {
-    title: 'SaaS Platforms',
-    description:
-      'Ship subscription products with auth, billing-ready foundations, analytics, and maintainable codebases.',
+    title: 'SaaS products',
+    description: 'Subscriptions, accounts, and analytics laid out so you can grow without a rewrite.',
   },
   {
-    title: 'Integrations & API Systems',
-    description:
-      'Connect tools and data sources with secure APIs, webhooks, ETL, and reliable background jobs.',
+    title: 'Integrations & APIs',
+    description: 'Connect CRMs, payments, and internal tools with reliable data flow.',
   },
 ]
 
@@ -105,19 +101,16 @@ export const industryPageContent: Record<
 
 export const faqs = [
   {
-    question: 'How long does a typical automation rollout take?',
-    answer:
-      'Most builds ship in 4-10 weeks depending on scope, integrations, and the number of user roles and workflows.',
+    question: 'How long until we go live?',
+    answer: 'Often about 4–10 weeks, depending on how many systems and workflows are involved.',
   },
   {
-    question: 'Can you integrate with our existing tools and data?',
-    answer:
-      'Yes. We integrate with CRMs, ERPs, payment gateways, Google Workspace, Slack, and custom internal APIs.',
+    question: 'Can you work with our existing software?',
+    answer: 'Yes. We plug into the tools you already use—CRMs, spreadsheets, chat, payments, and your own APIs.',
   },
   {
-    question: 'Do you provide support after deployment?',
-    answer:
-      'Yes. We offer ongoing maintenance, performance monitoring, security updates, and feature iteration cycles.',
+    question: 'What happens after launch?',
+    answer: 'We can stay on for fixes, monitoring, security updates, and new features as you grow.',
   },
 ]
 
@@ -143,16 +136,16 @@ export const caseStudies = [
 
 export const innovationPillars = [
   {
-    title: 'Product Thinking',
-    description: 'We design for real users, real workflows, and premium UX that drives adoption.',
+    title: 'Plain language',
+    description: 'No jargon overload—you always know what we are building and why.',
   },
   {
-    title: 'AI + Automation',
-    description: 'We automate repetitive work with AI systems your team can trust and operate.',
+    title: 'Smart automation',
+    description: 'AI where it saves time; humans stay in charge where it matters.',
   },
   {
-    title: 'Scalable Engineering',
-    description: 'Clean architecture, strong types, reliable deployments, and room to evolve.',
+    title: 'Built to last',
+    description: 'Code and infrastructure you can extend, not throw away in six months.',
   },
 ]
 
