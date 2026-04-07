@@ -78,13 +78,21 @@ export function SiteScrollProvider({ children }: { children: ReactNode }) {
     let pending: { x: number; y: number } | null = null
     let lastX = -1
     let lastY = -1
+    let lastWriteAt = 0
+    const canTrackPointer = window.matchMedia('(pointer: fine)').matches
     const onMove = (event: MouseEvent) => {
+      if (!canTrackPointer) return
       pending = { x: event.clientX, y: event.clientY }
       if (mouseRaf != null) return
       mouseRaf = window.requestAnimationFrame(() => {
         mouseRaf = null
         const p = pending
         if (!p) return
+        // Spotlight vars are only used in/around hero visuals.
+        if (window.scrollY > window.innerHeight * 1.5) return
+        const now = performance.now()
+        if (now - lastWriteAt < 80) return
+        lastWriteAt = now
         const x = (p.x / window.innerWidth) * 100
         const y = (p.y / window.innerHeight) * 100
         const xRounded = Math.round(x)

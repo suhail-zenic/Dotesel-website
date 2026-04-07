@@ -92,7 +92,9 @@ export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [startSnapshotCount, setStartSnapshotCount] = useState(false)
   const [activeHeroSlide, setActiveHeroSlide] = useState(0)
+  const [heroInView, setHeroInView] = useState(true)
   const snapshotRef = useRef<HTMLDivElement | null>(null)
+  const heroSectionRef = useRef<HTMLElement | null>(null)
 
   const currentTestimonial = useMemo(
     () => testimonials[activeTestimonial],
@@ -122,6 +124,21 @@ export default function HomePage() {
   }, [startSnapshotCount])
 
   useEffect(() => {
+    const el = heroSectionRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHeroInView(Boolean(entry?.isIntersecting))
+      },
+      { threshold: 0.15 },
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
     let testimonialId: ReturnType<typeof window.setInterval> | undefined
     let heroId: ReturnType<typeof window.setInterval> | undefined
 
@@ -131,7 +148,7 @@ export default function HomePage() {
           setActiveTestimonial((prev) => (prev + 1) % testimonials.length)
         }, 6000)
       }
-      if (heroId == null) {
+      if (heroInView && heroId == null) {
         heroId = window.setInterval(() => {
           setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length)
         }, 5000)
@@ -160,7 +177,7 @@ export default function HomePage() {
       document.removeEventListener('visibilitychange', onVisibility)
       stop()
     }
-  }, [])
+  }, [heroInView])
 
   return (
     <>
@@ -177,7 +194,7 @@ export default function HomePage() {
 
         <SiteHeader variant="hero" />
 
-        <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-10 lg:px-10 lg:pb-24">
+        <section ref={heroSectionRef} className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-10 lg:px-10 lg:pb-24">
           <div className="relative left-1/2 w-[96vw] max-w-[1900px] -translate-x-1/2 px-0">
             <div className="hero-slider hero-slider-frame relative overflow-hidden rounded-[2.5rem] border border-cyan-400/20 bg-slate-900/60 shadow-2xl shadow-slate-950/70 ring-1 ring-white/10 backdrop-blur-sm sm:rounded-3xl lg:backdrop-blur-md">
               <div className="relative aspect-[5/4] w-full sm:aspect-[2/1] lg:aspect-[16/7]">
