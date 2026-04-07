@@ -16,6 +16,8 @@ export function SiteScrollProvider({ children }: { children: ReactNode }) {
   const [showBackTop, setShowBackTop] = useState(false)
   const [showStickyCta, setShowStickyCta] = useState(false)
   const scrollRafRef = useRef<number | null>(null)
+  const lastProgressRef = useRef<number>(-1)
+  const lastProgressPctRef = useRef<number>(-1)
   const lastHeaderElevatedRef = useRef(false)
   const lastShowBackTopRef = useRef(false)
   const lastShowStickyCtaRef = useRef(false)
@@ -49,8 +51,18 @@ export function SiteScrollProvider({ children }: { children: ReactNode }) {
         const doc = document.documentElement
         const max = Math.max(doc.scrollHeight - doc.clientHeight, 1)
         const progress = Math.min(y / max, 1)
-        doc.style.setProperty('--scroll-progress', progress.toString())
-        doc.style.setProperty('--scroll-progress-pct', `${Math.round(progress * 100)}`)
+        const progressRounded = Math.round(progress * 1000) / 1000
+        const progressPct = Math.round(progress * 100)
+
+        // Avoid forcing style recalculation on every frame.
+        if (lastProgressRef.current !== progressRounded) {
+          lastProgressRef.current = progressRounded
+          doc.style.setProperty('--scroll-progress', progressRounded.toString())
+        }
+        if (lastProgressPctRef.current !== progressPct) {
+          lastProgressPctRef.current = progressPct
+          doc.style.setProperty('--scroll-progress-pct', `${progressPct}`)
+        }
       })
     }
     onScroll()
@@ -64,6 +76,8 @@ export function SiteScrollProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let mouseRaf: number | null = null
     let pending: { x: number; y: number } | null = null
+    let lastX = -1
+    let lastY = -1
     const onMove = (event: MouseEvent) => {
       pending = { x: event.clientX, y: event.clientY }
       if (mouseRaf != null) return
@@ -73,8 +87,13 @@ export function SiteScrollProvider({ children }: { children: ReactNode }) {
         if (!p) return
         const x = (p.x / window.innerWidth) * 100
         const y = (p.y / window.innerHeight) * 100
-        document.documentElement.style.setProperty('--cx', `${x}%`)
-        document.documentElement.style.setProperty('--cy', `${y}%`)
+        const xRounded = Math.round(x)
+        const yRounded = Math.round(y)
+        if (xRounded === lastX && yRounded === lastY) return
+        lastX = xRounded
+        lastY = yRounded
+        document.documentElement.style.setProperty('--cx', `${xRounded}%`)
+        document.documentElement.style.setProperty('--cy', `${yRounded}%`)
       })
     }
     window.addEventListener('mousemove', onMove, { passive: true })

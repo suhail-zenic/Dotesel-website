@@ -21,21 +21,21 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
   return (
     <>
       <header
-        className={`relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between px-6 pt-3 pb-1 transition-[background-color,box-shadow,border-radius] duration-150 ease-out motion-reduce:transition-none sm:pt-4 sm:pb-2 lg:px-10 ${
+        className={`relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-3 transition-[background-color,box-shadow,border-radius] duration-150 ease-out motion-reduce:transition-none sm:py-4 lg:px-10 ${
           elevated ? 'rounded-b-2xl bg-slate-950/75 shadow-lg shadow-slate-950/40 backdrop-blur-md' : ''
         }`}
       >
-        <Link to="/" className="inline-flex items-center">
+        <Link to="/" className="inline-flex w-[88px] shrink-0 items-center md:w-[96px]">
           <img
             src="/Dotsel.png"
             alt="Dotsel Automation"
-            className="h-20 w-auto object-contain sm:h-28 md:h-32 lg:h-36"
+            className="h-6 w-auto object-contain sm:h-7 md:h-8"
             loading="eager"
             decoding="async"
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-slate-200/90 md:flex" aria-label="Primary">
+        <nav className="hidden flex-1 items-center justify-center gap-7 text-sm text-slate-200/90 md:flex" aria-label="Primary">
           {mainNavLinks.map((link) => {
             const isActive = activePath === link.to
             return (
@@ -53,7 +53,7 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
 
         <Link
           to="/contact"
-          className="hidden rounded-full bg-cyan-400 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 md:inline-flex"
+          className="hidden shrink-0 rounded-full bg-cyan-400 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 md:inline-flex"
         >
           Book a Call
         </Link>

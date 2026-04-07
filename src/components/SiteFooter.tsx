@@ -8,11 +8,11 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.9fr_0.9fr]">
           <div>
             <div className="flex items-center gap-4">
-              <Link to="/">
+              <Link to="/" className="inline-flex w-[84px] shrink-0 items-center md:w-[92px]">
                 <img
                   src="/Dotsel.png"
                   alt="Dotsel Automation"
-                  className="h-20 w-auto object-contain sm:h-24"
+                  className="h-6 w-auto object-contain sm:h-7 md:h-8"
                   loading="lazy"
                   decoding="async"
                 />
