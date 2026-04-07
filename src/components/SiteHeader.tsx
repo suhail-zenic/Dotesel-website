@@ -21,7 +21,7 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
   return (
     <>
       <header
-        className={`relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between px-6 pt-3 pb-1 transition-all duration-300 sm:pt-4 sm:pb-2 lg:px-10 ${
+        className={`relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between px-6 pt-3 pb-1 transition-[background-color,box-shadow,border-radius] duration-150 ease-out motion-reduce:transition-none sm:pt-4 sm:pb-2 lg:px-10 ${
           elevated ? 'rounded-b-2xl bg-slate-950/75 shadow-lg shadow-slate-950/40 backdrop-blur-md' : ''
         }`}
       >
