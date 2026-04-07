@@ -1068,21 +1068,96 @@ body {
   mix-blend-mode: screen;
 }
 
-.hero-slide-image {
+.hero-slide-image,
+.hero-slide-tech {
   opacity: 0;
   transform: scale(1.04);
-  filter: saturate(1.06) contrast(1.08) brightness(0.92);
   transition: opacity 0.6s ease, transform 0.9s ease;
 }
 
-.hero-slide-image.hero-slide-active {
+.hero-slide-image {
+  filter: saturate(1.06) contrast(1.08) brightness(0.92);
+}
+
+.hero-slide-tech {
+  filter: none;
+}
+
+.hero-slide-image.hero-slide-active,
+.hero-slide-tech.hero-slide-active {
   opacity: 1;
   transform: scale(1);
 }
 
-.hero-slide-image.hero-slide-active {
+img.hero-slide-image.hero-slide-active {
   animation: kenBurns 10s ease-in-out infinite;
   will-change: transform;
+}
+
+@keyframes heroTechDash {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -56;
+  }
+}
+
+@keyframes heroTechDotPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    filter: drop-shadow(0 0 3px rgba(34, 211, 238, 0.4));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.9));
+  }
+}
+
+@keyframes heroTechBar {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.88);
+  }
+}
+
+.hero-tech-line {
+  animation: heroTechDash 12s linear infinite;
+}
+
+.hero-tech-line-delayed {
+  animation: heroTechDash 16s linear infinite reverse;
+  animation-delay: -3s;
+}
+
+.hero-tech-pulse-dot {
+  animation: heroTechDotPulse 2.6s ease-in-out infinite;
+}
+
+.hero-tech-pulse-dot-delayed {
+  animation: heroTechDotPulse 3.2s ease-in-out infinite;
+  animation-delay: -0.9s;
+}
+
+.hero-tech-bar {
+  transform-origin: bottom;
+  animation: heroTechBar 2.4s ease-in-out infinite;
+}
+
+.hero-tech-bar:nth-child(3n) {
+  animation-delay: 0.15s;
+}
+
+.hero-tech-bar:nth-child(3n + 1) {
+  animation-delay: 0.45s;
+}
+
+.hero-tech-bar:nth-child(3n + 2) {
+  animation-delay: 0.75s;
 }
 
 .hero-slider::after {
@@ -1513,7 +1588,13 @@ body {
   .cta-super::before,
   .glass-shift::before,
   .finale-cta,
-  .hero-slide-image {
+  .hero-slide-image,
+  .hero-slide-tech,
+  .hero-tech-backdrop .hero-tech-line,
+  .hero-tech-backdrop .hero-tech-line-delayed,
+  .hero-tech-backdrop .hero-tech-pulse-dot,
+  .hero-tech-backdrop .hero-tech-pulse-dot-delayed,
+  .hero-tech-backdrop .animate-pulse {
     animation: none !important;
   }
 

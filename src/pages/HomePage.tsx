@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatedStatValue } from '../components/AnimatedStatValue'
+import { HeroTechSlideBackdrop } from '../components/HeroTechSlideBackdrop'
 import { Reveal } from '../components/Reveal'
 import { SiteHeader } from '../components/SiteHeader'
 import {
@@ -23,8 +24,29 @@ const marqueeItems = [
   'Secure delivery',
 ]
 
-const heroSlides = [
+type HeroSlide =
+  | {
+      id: string
+      kind: 'photo'
+      src: string
+      srcSet: string
+      fallback: string
+      kicker: string
+      headline: string
+      body: string
+    }
+  | {
+      id: string
+      kind: 'tech'
+      kicker: string
+      headline: string
+      body: string
+    }
+
+const heroSlides: HeroSlide[] = [
   {
+    id: 'hero-app',
+    kind: 'photo',
     src: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=3200&q=90&fm=jpg',
     srcSet:
       'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1600&q=85&fm=jpg 1600w, https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=2400&q=85&fm=jpg 2400w, https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=3200&q=90&fm=jpg 3200w',
@@ -34,6 +56,8 @@ const heroSlides = [
     body: 'We plan, build, and launch web and mobile products—explained simply, delivered properly.',
   },
   {
+    id: 'hero-automation',
+    kind: 'photo',
     src: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=3200&q=90&fm=jpg',
     srcSet:
       'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=85&fm=jpg 1600w, https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2400&q=85&fm=jpg 2400w, https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=3200&q=90&fm=jpg 3200w',
@@ -43,11 +67,9 @@ const heroSlides = [
     body: 'We map your workflow, automate the repetitive parts, and keep human approvals where risk matters.',
   },
   {
-    src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=3200&q=90&fm=jpg',
-    srcSet:
-      'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1600&q=85&fm=jpg 1600w, https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=2400&q=85&fm=jpg 2400w, https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=3200&q=90&fm=jpg 3200w',
-    fallback: '/hero-slide-dashboard.svg',
-    kicker: 'Dashboards · Visibility · Decisions',
+    id: 'hero-visibility',
+    kind: 'tech',
+    kicker: 'Dashboards · Data · Live ops',
     headline: 'See what’s happening—in real time.',
     body: 'We build dashboards and reporting that turn messy operations into clear, daily decisions.',
   },
@@ -120,26 +142,35 @@ export default function HomePage() {
           <div className="relative left-1/2 w-[96vw] max-w-[1900px] -translate-x-1/2 px-0">
             <div className="hero-slider hero-slider-frame relative overflow-hidden rounded-[2.5rem] border border-cyan-400/20 bg-slate-900/60 shadow-2xl shadow-slate-950/70 ring-1 ring-white/10 backdrop-blur-md sm:rounded-3xl">
               <div className="relative aspect-[5/4] w-full sm:aspect-[2/1] lg:aspect-[16/7]">
-                {heroSlides.map((slide, index) => (
-                  <img
-                    key={slide.src}
-                    src={slide.src}
-                    srcSet={slide.srcSet}
-                    sizes="(min-width: 1024px) 96vw, 96vw"
-                    alt={slide.headline}
-                    className={`hero-slide-image absolute inset-0 h-full w-full object-cover ${
-                      activeHeroSlide === index ? 'hero-slide-active' : ''
-                    }`}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    decoding="async"
-                    onError={(e) => {
-                      const img = e.currentTarget
-                      if (img.dataset.fallbackApplied === '1') return
-                      img.dataset.fallbackApplied = '1'
-                      img.src = slide.fallback
-                    }}
-                  />
-                ))}
+                {heroSlides.map((slide, index) =>
+                  slide.kind === 'photo' ? (
+                    <img
+                      key={slide.id}
+                      src={slide.src}
+                      srcSet={slide.srcSet}
+                      sizes="(min-width: 1024px) 96vw, 96vw"
+                      alt={slide.headline}
+                      className={`hero-slide-image absolute inset-0 h-full w-full object-cover ${
+                        activeHeroSlide === index ? 'hero-slide-active' : ''
+                      }`}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      onError={(e) => {
+                        const img = e.currentTarget
+                        if (img.dataset.fallbackApplied === '1') return
+                        img.dataset.fallbackApplied = '1'
+                        img.src = slide.fallback
+                      }}
+                    />
+                  ) : (
+                    <HeroTechSlideBackdrop
+                      key={slide.id}
+                      className={`hero-slide-tech ${
+                        activeHeroSlide === index ? 'hero-slide-active' : ''
+                      }`}
+                    />
+                  ),
+                )}
                 <div className="hero-slider-overlay hero-slider-center absolute inset-0 px-5 py-10 sm:px-10">
                   <div className="hero-stagger mx-auto w-full max-w-3xl text-center">
                     <p className="mx-auto mb-5 inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-cyan-200">
@@ -193,7 +224,7 @@ export default function HomePage() {
               <div className="absolute inset-x-0 bottom-3 flex justify-center gap-2">
                 {heroSlides.map((slide, index) => (
                   <button
-                    key={slide.src}
+                    key={slide.id}
                     type="button"
                     aria-label={`Show ${slide.headline}`}
                     onClick={() => setActiveHeroSlide(index)}
