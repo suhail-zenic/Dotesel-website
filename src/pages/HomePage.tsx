@@ -24,6 +24,20 @@ const marqueeItems = [
   'Secure delivery',
 ]
 
+/** Smaller WebP sources + tight srcset so the hero does not pull multi‑MB JPEGs. */
+function unsplashHero(photoPath: string) {
+  const sizes = [640, 960, 1280, 1600, 1920] as const
+  const url = (w: number) =>
+    `https://images.unsplash.com/${photoPath}?auto=format&fit=crop&w=${w}&q=78&fm=webp`
+  return {
+    src: url(1280),
+    srcSet: sizes.map((w) => `${url(w)} ${w}w`).join(', '),
+  }
+}
+
+const heroAppPhoto = unsplashHero('photo-1531297484001-80022131f5a1')
+const heroAutomationPhoto = unsplashHero('photo-1550751827-4bd374c3f58b')
+
 type HeroSlide =
   | {
       id: string
@@ -47,9 +61,8 @@ const heroSlides: HeroSlide[] = [
   {
     id: 'hero-app',
     kind: 'photo',
-    src: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=3200&q=90&fm=jpg',
-    srcSet:
-      'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1600&q=85&fm=jpg 1600w, https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=2400&q=85&fm=jpg 2400w, https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=3200&q=90&fm=jpg 3200w',
+    src: heroAppPhoto.src,
+    srcSet: heroAppPhoto.srcSet,
     fallback: '/hero-slide-app.svg',
     kicker: 'Apps · UX · Engineering',
     headline: 'Software your team and customers will actually love using.',
@@ -58,9 +71,8 @@ const heroSlides: HeroSlide[] = [
   {
     id: 'hero-automation',
     kind: 'photo',
-    src: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=3200&q=90&fm=jpg',
-    srcSet:
-      'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=85&fm=jpg 1600w, https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2400&q=85&fm=jpg 2400w, https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=3200&q=90&fm=jpg 3200w',
+    src: heroAutomationPhoto.src,
+    srcSet: heroAutomationPhoto.srcSet,
     fallback: '/hero-slide-automation.svg',
     kicker: 'Automation · AI · Integrations',
     headline: 'Automations that save hours—without losing control.',
@@ -110,17 +122,44 @@ export default function HomePage() {
   }, [startSnapshotCount])
 
   useEffect(() => {
-    const id = window.setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length)
-    }, 6000)
-    return () => window.clearInterval(id)
-  }, [])
+    let testimonialId: ReturnType<typeof window.setInterval> | undefined
+    let heroId: ReturnType<typeof window.setInterval> | undefined
 
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length)
-    }, 5000)
-    return () => window.clearInterval(id)
+    const start = () => {
+      if (testimonialId == null) {
+        testimonialId = window.setInterval(() => {
+          setActiveTestimonial((prev) => (prev + 1) % testimonials.length)
+        }, 6000)
+      }
+      if (heroId == null) {
+        heroId = window.setInterval(() => {
+          setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length)
+        }, 5000)
+      }
+    }
+
+    const stop = () => {
+      if (testimonialId != null) {
+        window.clearInterval(testimonialId)
+        testimonialId = undefined
+      }
+      if (heroId != null) {
+        window.clearInterval(heroId)
+        heroId = undefined
+      }
+    }
+
+    const onVisibility = () => {
+      if (document.hidden) stop()
+      else start()
+    }
+
+    start()
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibility)
+      stop()
+    }
   }, [])
 
   return (
@@ -140,7 +179,7 @@ export default function HomePage() {
 
         <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-10 lg:px-10 lg:pb-24">
           <div className="relative left-1/2 w-[96vw] max-w-[1900px] -translate-x-1/2 px-0">
-            <div className="hero-slider hero-slider-frame relative overflow-hidden rounded-[2.5rem] border border-cyan-400/20 bg-slate-900/60 shadow-2xl shadow-slate-950/70 ring-1 ring-white/10 backdrop-blur-md sm:rounded-3xl">
+            <div className="hero-slider hero-slider-frame relative overflow-hidden rounded-[2.5rem] border border-cyan-400/20 bg-slate-900/60 shadow-2xl shadow-slate-950/70 ring-1 ring-white/10 backdrop-blur-sm sm:rounded-3xl lg:backdrop-blur-md">
               <div className="relative aspect-[5/4] w-full sm:aspect-[2/1] lg:aspect-[16/7]">
                 {heroSlides.map((slide, index) =>
                   slide.kind === 'photo' ? (
@@ -148,13 +187,14 @@ export default function HomePage() {
                       key={slide.id}
                       src={slide.src}
                       srcSet={slide.srcSet}
-                      sizes="(min-width: 1024px) 96vw, 96vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 96vw, min(1824px, 96vw)"
                       alt={slide.headline}
                       className={`hero-slide-image absolute inset-0 h-full w-full object-cover ${
                         activeHeroSlide === index ? 'hero-slide-active' : ''
                       }`}
                       loading={index === 0 ? 'eager' : 'lazy'}
                       decoding="async"
+                      fetchPriority={index === 0 ? 'high' : 'low'}
                       onError={(e) => {
                         const img = e.currentTarget
                         if (img.dataset.fallbackApplied === '1') return

@@ -62,14 +62,26 @@ export function SiteScrollProvider({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
+    let mouseRaf: number | null = null
+    let pending: { x: number; y: number } | null = null
     const onMove = (event: MouseEvent) => {
-      const x = (event.clientX / window.innerWidth) * 100
-      const y = (event.clientY / window.innerHeight) * 100
-      document.documentElement.style.setProperty('--cx', `${x}%`)
-      document.documentElement.style.setProperty('--cy', `${y}%`)
+      pending = { x: event.clientX, y: event.clientY }
+      if (mouseRaf != null) return
+      mouseRaf = window.requestAnimationFrame(() => {
+        mouseRaf = null
+        const p = pending
+        if (!p) return
+        const x = (p.x / window.innerWidth) * 100
+        const y = (p.y / window.innerHeight) * 100
+        document.documentElement.style.setProperty('--cx', `${x}%`)
+        document.documentElement.style.setProperty('--cy', `${y}%`)
+      })
     }
     window.addEventListener('mousemove', onMove, { passive: true })
-    return () => window.removeEventListener('mousemove', onMove)
+    return () => {
+      window.removeEventListener('mousemove', onMove)
+      if (mouseRaf != null) window.cancelAnimationFrame(mouseRaf)
+    }
   }, [])
 
   return (

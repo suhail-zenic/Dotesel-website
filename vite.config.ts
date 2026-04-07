@@ -4,4 +4,15 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/react-dom')) return 'react-dom'
+          if (id.includes('node_modules/react-router')) return 'react-router'
+          if (id.includes('node_modules/react/')) return 'react'
+        },
+      },
+    },
+  },
 })
