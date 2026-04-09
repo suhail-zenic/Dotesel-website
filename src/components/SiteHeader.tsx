@@ -51,12 +51,12 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
           })}
         </nav>
 
-        <Link
-          to="/contact"
+        <a
+          href="tel:8848260744"
           className="hidden shrink-0 rounded-full bg-cyan-400 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 md:inline-flex"
         >
-          Book a Call
-        </Link>
+          Call now
+        </a>
 
         <button
           type="button"
@@ -85,12 +85,12 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
                 </Link>
               )
             })}
-            <Link
-              to="/contact"
+            <a
+              href="tel:8848260744"
               className="mt-2 rounded-full bg-cyan-400 px-4 py-2 text-center text-sm font-semibold text-slate-950"
             >
-              Book a Call
-            </Link>
+              Call now
+            </a>
           </div>
         </div>
       ) : null}
