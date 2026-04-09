@@ -228,27 +228,27 @@ export default function HomePage() {
                     />
                   ),
                 )}
-                <div className="hero-slider-overlay hero-slider-center absolute inset-0 px-5 py-10 sm:px-10">
+                <div className="hero-slider-overlay hero-slider-center absolute inset-0 px-4 py-6 sm:px-10 sm:py-10">
                   <div className="hero-stagger mx-auto w-full max-w-3xl text-center">
-                    <p className="mx-auto mb-5 inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-cyan-200">
+                    <p className="mx-auto mb-3 inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-cyan-200 sm:mb-5 sm:px-4 sm:py-1.5 sm:text-xs sm:tracking-[0.16em]">
                       {heroSlides[activeHeroSlide].kicker}
                     </p>
-                    <h1 className="headline-shine text-balance text-4xl font-semibold leading-[1.12] text-white sm:text-5xl lg:text-[3.35rem]">
+                    <h1 className="headline-shine text-balance text-[1.75rem] font-semibold leading-[1.14] text-white sm:text-5xl lg:text-[3.35rem]">
                       {heroSlides[activeHeroSlide].headline}
                     </h1>
-                    <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-200/90 sm:text-lg">
+                    <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-200/90 sm:mt-6 sm:text-lg">
                       {heroSlides[activeHeroSlide].body}
                     </p>
-                    <div className="mt-9 flex flex-wrap justify-center gap-4">
+                    <div className="mt-5 flex flex-wrap justify-center gap-3 sm:mt-9 sm:gap-4">
                       <Link
                         to="/contact"
-                        className="btn-pulse magnetic-btn cta-super inline-flex rounded-full bg-cyan-400 px-7 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+                        className="btn-pulse magnetic-btn cta-super inline-flex rounded-full bg-cyan-400 px-5 py-2.5 text-xs font-semibold text-slate-950 transition hover:bg-cyan-300 sm:px-7 sm:py-3 sm:text-sm"
                       >
                         Start a conversation
                       </Link>
                       <Link
                         to="/solutions"
-                        className="secondary-cta inline-flex rounded-full border border-slate-400/80 px-7 py-3 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200"
+                        className="secondary-cta inline-flex rounded-full border border-slate-400/80 px-5 py-2.5 text-xs font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200 sm:px-7 sm:py-3 sm:text-sm"
                       >
                         See what we do
                       </Link>
