@@ -1,65 +1,62 @@
 import { Link } from 'react-router-dom'
-import { socialLinks } from '../home-data'
+import { socialLinks, whatsappUrl } from '../home-data'
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-slate-800 bg-slate-950/95 px-6 py-12 lg:px-10">
-      <div className="footer-shell mx-auto w-full max-w-7xl rounded-3xl border border-slate-800 bg-slate-900/70 p-6 sm:p-10">
+    <footer className="border-t border-line bg-surface px-6 py-12 lg:px-10">
+      <div className="mx-auto w-full max-w-7xl rounded-2xl border border-line bg-surface-elevated p-6 sm:p-10">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.9fr_0.9fr]">
           <div>
-            <div className="flex items-center gap-4">
-              <Link to="/" className="inline-flex w-[84px] shrink-0 items-center md:w-[92px]">
-                <img
-                  src="/Dotsel.png"
-                  alt="Dotsel Automation"
-                  className="h-6 w-auto object-contain sm:h-7 md:h-8"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </Link>
-            </div>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-300">
-              High-end software development for speed, reliability, and measurable impact. We build products,
-              apps, and AI automations into one premium operating layer for your business.
+            <Link to="/" className="inline-flex w-[84px] shrink-0 items-center md:w-[92px]">
+              <img
+                src="/Dotsel.png"
+                alt="Dotsel Shopify developers"
+                className="h-6 w-auto object-contain sm:h-7 md:h-8"
+                loading="lazy"
+                decoding="async"
+              />
+            </Link>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
+              We are a team of Shopify developers—custom themes, apps, migrations, and Shopify Plus
+              builds for brands that want to grow on the platform.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <span className="footer-chip rounded-full border border-slate-700 bg-slate-950/40 px-4 py-2 text-xs text-slate-300">
-                Web Apps
-              </span>
-              <span className="footer-chip rounded-full border border-slate-700 bg-slate-950/40 px-4 py-2 text-xs text-slate-300">
-                Mobile Apps
-              </span>
-              <span className="footer-chip rounded-full border border-slate-700 bg-slate-950/40 px-4 py-2 text-xs text-slate-300">
-                AI Automation
-              </span>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {['Custom themes', 'Shopify apps', 'Migrations'].map((chip) => (
+                <span
+                  key={chip}
+                  className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-muted"
+                >
+                  {chip}
+                </span>
+              ))}
             </div>
           </div>
 
           <div>
-            <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Quick links</p>
-            <ul className="mt-4 space-y-3 text-sm text-slate-300">
+            <p className="section-label">Quick links</p>
+            <ul className="mt-4 space-y-3 text-sm text-muted">
               <li>
-                <Link className="footer-link transition hover:text-cyan-200" to="/solutions">
-                  Solutions
+                <Link className="footer-link transition hover:text-brand" to="/solutions">
+                  Services
                 </Link>
               </li>
               <li>
-                <Link className="footer-link transition hover:text-cyan-200" to="/industries">
-                  Industries
+                <Link className="footer-link transition hover:text-brand" to="/industries">
+                  Store types
                 </Link>
               </li>
               <li>
-                <Link className="footer-link transition hover:text-cyan-200" to="/case-studies">
-                  Case Studies
+                <Link className="footer-link transition hover:text-brand" to="/case-studies">
+                  Portfolio
                 </Link>
               </li>
               <li>
-                <Link className="footer-link transition hover:text-cyan-200" to="/about">
+                <Link className="footer-link transition hover:text-brand" to="/about">
                   About
                 </Link>
               </li>
               <li>
-                <Link className="footer-link transition hover:text-cyan-200" to="/contact">
+                <Link className="footer-link transition hover:text-brand" to="/contact">
                   Contact
                 </Link>
               </li>
@@ -67,21 +64,21 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Contact</p>
-            <p className="mt-4 text-sm leading-relaxed text-slate-300">
-              Want a proposal or a quick consult? Start a WhatsApp chat and we’ll respond fast.
+            <p className="section-label">Contact</p>
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              Need a quote or a quick consult? Message us on WhatsApp—we respond fast.
             </p>
-            <address className="mt-4 not-italic text-sm leading-relaxed text-slate-400">
+            <address className="mt-4 not-italic text-sm leading-relaxed text-muted">
               Adimali, opposite to Union Bank
               <br />
               Idukki – 685561
             </address>
             <div className="mt-5 flex flex-wrap gap-3">
               <a
-                href="https://wa.me/918848260744?text=Hi%20Dotsel%20Automation%2C%20I%20want%20to%20discuss%20an%20automation%20project."
+                href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/40 p-3 text-slate-200 transition hover:border-cyan-300/50 hover:bg-cyan-400/10 hover:text-cyan-200"
+                className="inline-flex items-center justify-center rounded-full border border-line bg-surface p-3 text-ink transition hover:border-brand hover:text-brand"
                 aria-label="WhatsApp"
                 title="WhatsApp"
               >
@@ -94,9 +91,9 @@ export function SiteFooter() {
                 href={socialLinks.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/40 p-3 text-slate-200 transition hover:border-cyan-300/50 hover:bg-cyan-400/10 hover:text-cyan-200"
-                aria-label="Dotsel Automation on Facebook"
-                title="Dotsel Automation on Facebook"
+                className="inline-flex items-center justify-center rounded-full border border-line bg-surface p-3 text-ink transition hover:border-brand hover:text-brand"
+                aria-label="Dotsel on Facebook"
+                title="Facebook"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07c0 6.02 4.39 11.01 10.12 11.93v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.79-4.69 4.54-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.08 24 18.09 24 12.07Z" />
@@ -107,9 +104,9 @@ export function SiteFooter() {
                 href={socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/40 p-3 text-slate-200 transition hover:border-cyan-300/50 hover:bg-cyan-400/10 hover:text-cyan-200"
-                aria-label="Dotsel Automation on Instagram"
-                title="Dotsel Automation on Instagram"
+                className="inline-flex items-center justify-center rounded-full border border-line bg-surface p-3 text-ink transition hover:border-brand hover:text-brand"
+                aria-label="Dotsel on Instagram"
+                title="Instagram"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm6.25-2.55a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z" />
@@ -119,13 +116,13 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-slate-800/80 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-slate-400">© {new Date().getFullYear()} Dotsel Automation. All rights reserved.</p>
-          <div className="flex flex-wrap gap-4 text-xs text-slate-400">
-            <a className="footer-link transition hover:text-cyan-200" href="#">
+        <div className="mt-10 flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-muted">© {new Date().getFullYear()} Dotsel. Shopify developers.</p>
+          <div className="flex flex-wrap gap-4 text-xs text-muted">
+            <a className="footer-link transition hover:text-brand" href="#">
               Privacy
             </a>
-            <a className="footer-link transition hover:text-cyan-200" href="#">
+            <a className="footer-link transition hover:text-brand" href="#">
               Terms
             </a>
           </div>

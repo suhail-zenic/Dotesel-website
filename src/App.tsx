@@ -13,7 +13,7 @@ const CaseStudiesPage = lazy(() => import('./pages/CaseStudiesPage'))
 
 function PageLoading() {
   return (
-    <div className="flex min-h-[40vh] items-center justify-center bg-slate-950 text-sm text-slate-500" aria-live="polite">
+    <div className="flex min-h-[40vh] items-center justify-center bg-canvas text-sm text-muted" aria-live="polite">
       Loading…
     </div>
   )

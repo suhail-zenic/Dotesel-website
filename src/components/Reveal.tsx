@@ -3,10 +3,12 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 export function Reveal({
   children,
   className = '',
+  stagger = false,
   style,
 }: {
   children: ReactNode
   className?: string
+  stagger?: boolean
   style?: CSSProperties
 }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -29,7 +31,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? 'reveal-visible' : ''} ${className}`.trim()}
+      className={`reveal ${visible ? 'reveal-visible' : ''} ${stagger ? 'stagger-children' : ''} ${className}`.trim()}
       style={style}
     >
       {children}

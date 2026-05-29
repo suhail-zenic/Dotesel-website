@@ -1,100 +1,40 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatedStatValue } from '../components/AnimatedStatValue'
-import { HeroTechSlideBackdrop } from '../components/HeroTechSlideBackdrop'
+import { FaqItem } from '../components/FaqAccordion'
+import { HeroShowcase } from '../components/HeroShowcase'
 import { Reveal } from '../components/Reveal'
 import { SiteHeader } from '../components/SiteHeader'
 import {
   faqs,
-  industries,
   innovationPillars,
   outcomes,
+  processSteps,
   services,
+  siteTagline,
   stats,
+  storeTypes,
   testimonials,
   trustMarks,
 } from '../home-data'
 
 const marqueeItems = [
-  'Web apps',
-  'Mobile apps',
-  'AI workflows',
-  'Dashboards',
-  'Integrations',
-  'Secure delivery',
+  'Custom themes',
+  'Shopify Plus',
+  'Liquid',
+  'Storefront API',
+  'App development',
+  'Migrations',
+  'Checkout extensions',
+  'CRO & speed',
 ]
 
-/** Smaller WebP sources + tight srcset so the hero does not pull multi‑MB JPEGs. */
-function unsplashHero(photoPath: string) {
-  const sizes = [640, 960, 1280, 1600, 1920] as const
-  const url = (w: number) =>
-    `https://images.unsplash.com/${photoPath}?auto=format&fit=crop&w=${w}&q=78&fm=webp`
-  return {
-    src: url(1280),
-    srcSet: sizes.map((w) => `${url(w)} ${w}w`).join(', '),
-  }
-}
-
-const heroAppPhoto = unsplashHero('photo-1531297484001-80022131f5a1')
-const heroAutomationPhoto = unsplashHero('photo-1550751827-4bd374c3f58b')
-
-type HeroSlide =
-  | {
-      id: string
-      kind: 'photo'
-      src: string
-      srcSet: string
-      fallback: string
-      kicker: string
-      headline: string
-      body: string
-    }
-  | {
-      id: string
-      kind: 'tech'
-      kicker: string
-      headline: string
-      body: string
-    }
-
-const heroSlides: HeroSlide[] = [
-  {
-    id: 'hero-app',
-    kind: 'photo',
-    src: heroAppPhoto.src,
-    srcSet: heroAppPhoto.srcSet,
-    fallback: '/hero-slide-app.svg',
-    kicker: 'Apps · UX · Engineering',
-    headline: 'Software your team and customers will actually love using.',
-    body: 'We plan, build, and launch web and mobile products—explained simply, delivered properly.',
-  },
-  {
-    id: 'hero-automation',
-    kind: 'photo',
-    src: heroAutomationPhoto.src,
-    srcSet: heroAutomationPhoto.srcSet,
-    fallback: '/hero-slide-automation.svg',
-    kicker: 'Automation · AI · Integrations',
-    headline: 'Automations that save hours—without losing control.',
-    body: 'We map your workflow, automate the repetitive parts, and keep human approvals where risk matters.',
-  },
-  {
-    id: 'hero-visibility',
-    kind: 'tech',
-    kicker: 'Dashboards · Data · Live ops',
-    headline: 'See what’s happening—in real time.',
-    body: 'We build dashboards and reporting that turn messy operations into clear, daily decisions.',
-  },
-]
+const trustIcons = ['⚡', '🛡️', '◆', '🚀']
 
 export default function HomePage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0)
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [startSnapshotCount, setStartSnapshotCount] = useState(false)
-  const [activeHeroSlide, setActiveHeroSlide] = useState(0)
-  const [heroInView, setHeroInView] = useState(true)
   const snapshotRef = useRef<HTMLDivElement | null>(null)
-  const heroSectionRef = useRef<HTMLElement | null>(null)
 
   const currentTestimonial = useMemo(
     () => testimonials[activeTestimonial],
@@ -102,7 +42,7 @@ export default function HomePage() {
   )
 
   useEffect(() => {
-    document.title = 'Dotsel Automation | Software, Apps & AI Automation'
+    document.title = 'Dotsel | Shopify Developers'
   }, [])
 
   useEffect(() => {
@@ -124,34 +64,13 @@ export default function HomePage() {
   }, [startSnapshotCount])
 
   useEffect(() => {
-    const el = heroSectionRef.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setHeroInView(Boolean(entry?.isIntersecting))
-      },
-      { threshold: 0.15 },
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
     let testimonialId: ReturnType<typeof window.setInterval> | undefined
-    let heroId: ReturnType<typeof window.setInterval> | undefined
 
     const start = () => {
       if (testimonialId == null) {
         testimonialId = window.setInterval(() => {
           setActiveTestimonial((prev) => (prev + 1) % testimonials.length)
-        }, 6000)
-      }
-      if (heroInView && heroId == null) {
-        heroId = window.setInterval(() => {
-          setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length)
-        }, 5000)
+        }, 6500)
       }
     }
 
@@ -159,10 +78,6 @@ export default function HomePage() {
       if (testimonialId != null) {
         window.clearInterval(testimonialId)
         testimonialId = undefined
-      }
-      if (heroId != null) {
-        window.clearInterval(heroId)
-        heroId = undefined
       }
     }
 
@@ -177,163 +92,83 @@ export default function HomePage() {
       document.removeEventListener('visibilitychange', onVisibility)
       stop()
     }
-  }, [heroInView])
+  }, [])
 
   return (
     <>
-      <div className="hero-aurora hero-cinematic relative overflow-hidden">
-        <div className="hero-aurora-blob hero-aurora-blob-a" aria-hidden />
-        <div className="hero-aurora-blob hero-aurora-blob-b" aria-hidden />
-        <div className="spotlight-layer" aria-hidden />
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.18),transparent_40%),radial-gradient(circle_at_85%_15%,rgba(59,130,246,0.15),transparent_38%),radial-gradient(circle_at_50%_90%,rgba(139,92,246,0.14),transparent_42%)]"
-          aria-hidden
-        />
-        <div className="orb orb-cyan" />
-        <div className="orb orb-blue" />
+      <div className="relative overflow-hidden border-b border-line/60">
+        <div className="hero-grid-pattern pointer-events-none absolute inset-0" aria-hidden />
+        <div className="hero-glow -right-32 -top-32 h-[28rem] w-[28rem] bg-brand/25" aria-hidden />
+        <div className="hero-glow bottom-0 left-1/4 h-80 w-80 bg-teal-500/10" aria-hidden />
 
         <SiteHeader variant="hero" />
 
-        <section ref={heroSectionRef} className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-10 lg:px-10 lg:pb-24">
-          <div className="relative left-1/2 w-[96vw] max-w-[1900px] -translate-x-1/2 px-0">
-            <div className="hero-slider hero-slider-frame relative overflow-hidden rounded-[2.5rem] border border-cyan-400/20 bg-slate-900/60 shadow-2xl shadow-slate-950/70 ring-1 ring-white/10 backdrop-blur-sm sm:rounded-3xl lg:backdrop-blur-md">
-              <div className="relative aspect-[5/4] w-full sm:aspect-[2/1] lg:aspect-[16/7]">
-                {heroSlides.map((slide, index) =>
-                  slide.kind === 'photo' ? (
-                    <img
-                      key={slide.id}
-                      src={slide.src}
-                      srcSet={slide.srcSet}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 96vw, min(1824px, 96vw)"
-                      alt={slide.headline}
-                      className={`hero-slide-image absolute inset-0 h-full w-full object-cover ${
-                        activeHeroSlide === index ? 'hero-slide-active' : ''
-                      }`}
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                      decoding="async"
-                      fetchPriority={index === 0 ? 'high' : 'low'}
-                      onError={(e) => {
-                        const img = e.currentTarget
-                        if (img.dataset.fallbackApplied === '1') return
-                        img.dataset.fallbackApplied = '1'
-                        img.src = slide.fallback
-                      }}
-                    />
-                  ) : (
-                    <HeroTechSlideBackdrop
-                      key={slide.id}
-                      className={`hero-slide-tech ${
-                        activeHeroSlide === index ? 'hero-slide-active' : ''
-                      }`}
-                    />
-                  ),
-                )}
-                <div className="hero-slider-overlay hero-slider-center absolute inset-0 px-4 py-6 sm:px-10 sm:py-10">
-                  <div className="hero-stagger mx-auto w-full max-w-3xl text-center">
-                    <p className="mx-auto mb-3 inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-cyan-200 sm:mb-5 sm:px-4 sm:py-1.5 sm:text-xs sm:tracking-[0.16em]">
-                      {heroSlides[activeHeroSlide].kicker}
-                    </p>
-                    <h1 className="headline-shine text-balance text-[1.75rem] font-semibold leading-[1.14] text-white sm:text-5xl lg:text-[3.35rem]">
-                      {heroSlides[activeHeroSlide].headline}
-                    </h1>
-                    <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-200/90 sm:mt-6 sm:text-lg">
-                      {heroSlides[activeHeroSlide].body}
-                    </p>
-                    <div className="mt-5 flex flex-wrap justify-center gap-3 sm:mt-9 sm:gap-4">
-                      <Link
-                        to="/contact"
-                        className="btn-pulse magnetic-btn cta-super inline-flex rounded-full bg-cyan-400 px-5 py-2.5 text-xs font-semibold text-slate-950 transition hover:bg-cyan-300 sm:px-7 sm:py-3 sm:text-sm"
-                      >
-                        Start a conversation
-                      </Link>
-                      <Link
-                        to="/solutions"
-                        className="secondary-cta inline-flex rounded-full border border-slate-400/80 px-5 py-2.5 text-xs font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200 sm:px-7 sm:py-3 sm:text-sm"
-                      >
-                        See what we do
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+        <section className="relative mx-auto grid w-full max-w-7xl gap-14 px-6 pb-24 pt-6 lg:grid-cols-2 lg:items-center lg:gap-12 lg:px-10 lg:pb-32 lg:pt-10">
+          <div className="hero-stagger">
+            <span className="shopify-badge">
+              <span className="badge-dot inline-block h-2 w-2 rounded-full bg-brand" aria-hidden />
+              Shopify developers
+            </span>
+            <h1 className="mt-6 text-balance text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]">
+              We&apos;re a team of{' '}
+              <span className="text-gradient">Shopify developers</span> building stores that sell.
+            </h1>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">{siteTagline}</p>
+            <p className="mt-3 max-w-xl text-base leading-relaxed text-muted/90">
+              Custom themes, apps, migrations, and Shopify Plus—crafted by specialists who live in the
+              ecosystem.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/contact" className="btn-primary px-7 py-3.5 text-sm">
+                Start your project
+              </Link>
+              <Link to="/case-studies" className="btn-secondary px-7 py-3.5 text-sm">
+                View portfolio
+              </Link>
+            </div>
+            <div className="mt-10 flex flex-wrap items-center gap-6 border-t border-line/60 pt-8">
+              <div>
+                <p className="text-2xl font-bold text-brand">120+</p>
+                <p className="text-xs font-medium text-muted">stores launched</p>
               </div>
-
-              <div className="absolute inset-x-0 top-3 flex items-center justify-between px-3">
-                <button
-                  type="button"
-                  aria-label="Previous hero slide"
-                  className="hero-slider-arrow rounded-full border border-slate-500/70 bg-slate-950/65 px-2.5 py-1.5 text-sm text-slate-100 transition hover:border-cyan-300/60 hover:text-cyan-200"
-                  onClick={() =>
-                    setActiveHeroSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
-                  }
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  aria-label="Next hero slide"
-                  className="hero-slider-arrow rounded-full border border-slate-500/70 bg-slate-950/65 px-2.5 py-1.5 text-sm text-slate-100 transition hover:border-cyan-300/60 hover:text-cyan-200"
-                  onClick={() => setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length)}
-                >
-                  →
-                </button>
-              </div>
-
-              <div className="absolute inset-x-0 bottom-3 flex justify-center gap-2">
-                {heroSlides.map((slide, index) => (
-                  <button
-                    key={slide.id}
-                    type="button"
-                    aria-label={`Show ${slide.headline}`}
-                    onClick={() => setActiveHeroSlide(index)}
-                    className={`h-2 rounded-full transition-all ${
-                      activeHeroSlide === index ? 'w-8 bg-cyan-300' : 'w-3 bg-slate-300/55 hover:bg-cyan-200/70'
-                    }`}
-                  />
-                ))}
+              <div className="h-8 w-px bg-line" aria-hidden />
+              <div>
+                <p className="text-2xl font-bold text-brand">98%</p>
+                <p className="text-xs font-medium text-muted">client satisfaction</p>
               </div>
             </div>
           </div>
 
-          <div
-            ref={snapshotRef}
-            className="lift-card simple-glass-panel mx-auto mt-10 max-w-3xl rounded-3xl border border-cyan-400/20 bg-slate-900/50 p-6 shadow-2xl shadow-slate-950/70 ring-1 ring-white/10 backdrop-blur-md sm:p-8"
-          >
-            <p className="text-xs uppercase tracking-[0.2em] text-slate-400">At a glance</p>
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4">
-              {stats.map((stat) => (
-                <article
-                  key={stat.label}
-                  className="stats-pop rounded-2xl border border-slate-700/60 bg-slate-950/50 p-4 backdrop-blur-sm transition hover:border-cyan-400/35 sm:p-5"
-                >
-                  <p className="text-2xl font-semibold text-cyan-200 sm:text-3xl">
-                    <AnimatedStatValue value={stat.value} start={startSnapshotCount} />
-                  </p>
-                  <p className="mt-1 text-xs text-slate-400 sm:text-sm">{stat.label}</p>
-                </article>
-              ))}
-            </div>
+          <div className="relative lg:pl-4">
+            <HeroShowcase />
           </div>
         </section>
       </div>
 
-      <main className="mx-auto min-w-0 w-full max-w-7xl space-y-20 px-6 py-16 lg:space-y-24 lg:px-10">
-        <section className="stagger-fade-in grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {trustMarks.map((mark) => (
+      <main className="relative mx-auto min-w-0 w-full max-w-7xl space-y-24 px-6 py-20 lg:space-y-28 lg:px-10">
+        <Reveal stagger className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {trustMarks.map((mark, i) => (
             <article
               key={mark}
-              className="border-shimmer rounded-2xl border border-slate-800 bg-slate-900/70 p-4 text-center text-sm font-medium text-slate-200"
+              className="trust-pill card flex items-center gap-3 px-4 py-4"
             >
-              {mark}
+              <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-muted text-lg"
+                aria-hidden
+              >
+                {trustIcons[i % trustIcons.length]}
+              </span>
+              <span className="text-sm font-semibold text-ink">{mark}</span>
             </article>
           ))}
-        </section>
+        </Reveal>
 
-        <section className="relative overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-900/40 py-4">
-          <div className="marquee-track flex min-w-max items-center gap-6 px-4 text-sm text-slate-300">
+        <section className="marquee-wrap relative overflow-hidden rounded-2xl border border-line bg-surface/50 py-5">
+          <div className="marquee-track flex min-w-max items-center gap-4 px-4 text-sm font-medium">
             {marqueeItems.concat(marqueeItems).map((item, index) => (
               <span
                 key={`${item}-${index}`}
-                className="shrink-0 rounded-full border border-slate-700/80 bg-slate-950/50 px-4 py-2 backdrop-blur"
+                className="shrink-0 rounded-full border border-line/80 bg-surface-elevated px-5 py-2.5 text-ink shadow-sm"
               >
                 {item}
               </span>
@@ -341,70 +176,87 @@ export default function HomePage() {
           </div>
         </section>
 
+        <div ref={snapshotRef} className="stat-band relative rounded-2xl px-6 py-12 sm:px-10">
+          <p className="relative text-center text-xs font-semibold uppercase tracking-[0.22em] text-white/75">
+            At a glance
+          </p>
+          <div className="relative mt-10 grid grid-cols-2 gap-8 lg:grid-cols-4">
+            {stats.map((stat) => (
+              <article key={stat.label} className="text-center">
+                <p className="text-3xl font-extrabold sm:text-4xl">
+                  <AnimatedStatValue value={stat.value} start={startSnapshotCount} />
+                </p>
+                <p className="mt-2 text-sm text-white/80">{stat.label}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <Reveal>
           <section>
-            <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Why Dotsel</p>
-            <h2 className="mt-2 max-w-2xl text-3xl font-semibold text-white sm:text-4xl">
-              Three promises—no buzzword soup.
+            <p className="section-label">Why Dotsel</p>
+            <h2 className="mt-2 max-w-2xl text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              Shopify specialists—not generalists dabbling in e-commerce.
             </h2>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
               {innovationPillars.map((pillar) => (
-                <article
-                  key={pillar.title}
-                  className="lift-card wow-card group rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900/80 to-slate-950/90 p-6"
-                >
-                  <div className="mb-4 h-1 w-12 rounded-full bg-gradient-to-r from-cyan-400 to-violet-400 transition-[width] duration-500 group-hover:w-20" />
-                  <h3 className="text-lg font-semibold text-cyan-100">{pillar.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-base">{pillar.description}</p>
+                <article key={pillar.title} className="card lift-card glow-border p-6">
+                  <div className="mb-4 h-1 w-12 rounded-full bg-gradient-to-r from-brand to-teal-300" />
+                  <h3 className="text-lg font-semibold text-ink">{pillar.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">{pillar.description}</p>
                 </article>
               ))}
             </div>
           </section>
         </Reveal>
 
-        <section id="solutions">
-          <div className="mb-8 max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">What we build</p>
-            <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Everything in one partner.</h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-base">
-              Pick the pieces you need; we align them into one clear roadmap.
+        <section id="services">
+          <div className="mb-10 max-w-3xl">
+            <p className="section-label">Services</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              Everything your Shopify store needs.
+            </h2>
+            <p className="mt-3 text-base leading-relaxed text-muted">
+              One team for theme, app, migration, and growth work—aligned to your roadmap.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
-            {services.map((service) => (
+            {services.map((service, i) => (
               <article
                 key={service.title}
-                className="lift-card wow-card rounded-2xl border border-slate-800 bg-slate-900/70 p-6 transition hover:border-cyan-400/25"
+                className="card lift-card glow-border p-6"
+                style={{ transitionDelay: `${i * 50}ms` }}
               >
-                <h3 className="text-lg font-semibold text-white">{service.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400 sm:text-base">{service.description}</p>
+                <h3 className="text-lg font-semibold text-ink">{service.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">{service.description}</p>
               </article>
             ))}
           </div>
-          <div className="mt-8 text-center sm:text-left">
+          <div className="mt-8">
             <Link
               to="/solutions"
-              className="inline-flex rounded-full border border-slate-600 px-6 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-brand transition hover:gap-3 hover:text-brand-hover"
             >
-              Full solutions overview →
+              Full services overview <span aria-hidden>→</span>
             </Link>
           </div>
         </section>
 
         <Reveal>
-          <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 sm:p-10">
-            <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">How it works</p>
-            <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Simple process. Steady progress.</h2>
+          <section className="glass-card rounded-2xl border border-line p-6 sm:p-10">
+            <p className="section-label">How we work</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              Clear process. Predictable delivery.
+            </h2>
             <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {[
-                { step: '01', title: 'Discover', body: 'We learn your goals, tools, and constraints in plain English.' },
-                { step: '02', title: 'Design & build', body: 'UX, engineering, and testing in focused milestones you can see.' },
-                { step: '03', title: 'Launch & improve', body: 'Go live with confidence, then refine based on real usage.' },
-              ].map((row) => (
-                <div key={row.step} className="simple-step-card wow-card relative rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-400">{row.step}</span>
-                  <h3 className="mt-3 text-lg font-semibold text-white">{row.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">{row.body}</p>
+              {processSteps.map((row) => (
+                <div
+                  key={row.step}
+                  className="group rounded-xl border border-line bg-canvas/50 p-6 transition-colors duration-300 hover:border-brand/30 hover:bg-brand-muted/30"
+                >
+                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand">{row.step}</span>
+                  <h3 className="mt-3 text-lg font-semibold text-ink">{row.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{row.body}</p>
                 </div>
               ))}
             </div>
@@ -412,52 +264,60 @@ export default function HomePage() {
         </Reveal>
 
         <Reveal>
-          <section id="industries" className="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900/90 via-slate-950 to-slate-900/90 p-6 sm:p-10">
-            <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Industries</p>
-            <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">We adapt to your world.</h2>
-            <p className="mt-3 max-w-2xl text-sm text-slate-400 sm:text-base">
-              Same craft across sectors—tailored where regulation, buyers, or ops demand it.
+          <section
+            id="store-types"
+            className="relative overflow-hidden rounded-2xl border border-brand/20 bg-gradient-to-br from-brand-muted/40 via-surface to-canvas p-6 sm:p-10"
+          >
+            <div
+              className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-brand/10 blur-3xl"
+              aria-hidden
+            />
+            <p className="section-label relative">Store types</p>
+            <h2 className="relative mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              Built for brands like yours.
+            </h2>
+            <p className="relative mt-3 max-w-2xl text-base text-muted">
+              Fashion, beauty, food, B2B, and DTC—we adapt Shopify to how you sell.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {industries.map((name) => (
+            <div className="relative mt-8 flex flex-wrap gap-3">
+              {storeTypes.map((name) => (
                 <span
                   key={name}
-                  className="industry-chip rounded-full border border-slate-700/80 bg-slate-950/60 px-4 py-2 text-xs font-medium uppercase tracking-wider text-slate-300"
+                  className="rounded-full border border-line/80 bg-surface/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink backdrop-blur transition hover:border-brand/40 hover:text-brand"
                 >
                   {name}
                 </span>
               ))}
             </div>
-            <Link
-              to="/industries"
-              className="mt-8 inline-flex rounded-full bg-cyan-400 px-6 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
-            >
-              Industry details
+            <Link to="/industries" className="btn-primary relative mt-8 px-6 py-2.5 text-sm">
+              See store types
             </Link>
           </section>
         </Reveal>
 
         <Reveal>
-          <section className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 sm:p-10">
-            <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Typical impact</p>
-            <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Numbers teams care about.</h2>
-            <p className="mt-3 max-w-xl text-sm text-slate-400 sm:text-base">
-              Ranges from past work—your results depend on starting point and scope.
+          <section className="glass-card rounded-2xl border border-line p-6 sm:p-10">
+            <p className="section-label">Typical results</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              Outcomes we optimize for.
+            </h2>
+            <p className="mt-3 max-w-xl text-base text-muted">
+              Ranges from past Shopify engagements—your results depend on scope and starting point.
             </p>
-            <div className="mt-10 space-y-6">
+            <div className="mt-10 space-y-7">
               {outcomes.map((item, index) => (
                 <div key={item.label}>
                   <div className="mb-2 flex items-center justify-between text-sm">
-                    <span className="text-slate-300">{item.label}</span>
-                    <span className="font-semibold text-cyan-200">{item.value}%</span>
+                    <span className="font-medium text-ink">{item.label}</span>
+                    <span className="font-bold text-brand">{item.value}%</span>
                   </div>
-                  <div className="h-2.5 overflow-hidden rounded-full bg-slate-800">
+                  <div className="h-2 overflow-hidden rounded-full bg-line/80">
                     <div
-                      className="progress-fill h-full rounded-full bg-gradient-to-r from-cyan-300 to-violet-400"
+                      className="progress-fill h-full rounded-full"
                       style={
                         {
                           '--target-width': `${item.value}%`,
-                          '--delay': `${index * 0.15}s`,
+                          '--delay': `${index * 0.12}s`,
                         } as CSSProperties
                       }
                     />
@@ -468,15 +328,20 @@ export default function HomePage() {
           </section>
         </Reveal>
 
-        <section className="glass-shift overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-6 sm:p-10">
-          <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Clients say</p>
+        <section className="glass-card rounded-2xl border border-line p-6 sm:p-10">
+          <p className="section-label">Client stories</p>
           <div key={activeTestimonial} className="testimonial-fade">
-            <blockquote className="mt-4 max-w-3xl text-lg font-medium leading-relaxed text-white sm:text-2xl">
-              “{currentTestimonial.quote}”
+            <blockquote className="mt-4 max-w-3xl text-xl font-medium leading-relaxed text-ink sm:text-2xl">
+              &ldquo;{currentTestimonial.quote}&rdquo;
             </blockquote>
-            <div className="mt-6">
-              <p className="font-medium text-cyan-200">{currentTestimonial.author}</p>
-              <p className="text-sm text-slate-400">{currentTestimonial.role}</p>
+            <div className="mt-6 flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-muted text-lg font-bold text-brand">
+                {currentTestimonial.author.charAt(0)}
+              </div>
+              <div>
+                <p className="font-semibold text-brand">{currentTestimonial.author}</p>
+                <p className="text-sm text-muted">{currentTestimonial.role}</p>
+              </div>
             </div>
           </div>
           <div className="mt-8 flex flex-wrap gap-2">
@@ -486,61 +351,44 @@ export default function HomePage() {
                 type="button"
                 aria-label={`Show testimonial ${index + 1}`}
                 onClick={() => setActiveTestimonial(index)}
-                className={`h-2 rounded-full transition-all ${
-                  activeTestimonial === index ? 'w-10 bg-cyan-300' : 'w-6 bg-slate-600 hover:bg-slate-500'
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeTestimonial === index ? 'w-10 bg-brand shadow-[0_0_12px_var(--color-brand-glow)]' : 'w-6 bg-line hover:bg-brand/40'
                 }`}
               />
             ))}
           </div>
         </section>
 
-        <section className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 sm:p-10">
-          <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">FAQ</p>
-          <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Straight answers.</h2>
+        <section className="glass-card rounded-2xl border border-line p-6 sm:p-10">
+          <p className="section-label">FAQ</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">Common questions.</h2>
           <div className="mt-8 space-y-3">
-            {faqs.map((faq, index) => {
-              const isOpen = openFaq === index
-              return (
-                <article key={faq.question} className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/60">
-                  <button
-                    type="button"
-                    className="flex w-full items-center justify-between px-5 py-4 text-left"
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                  >
-                    <span className="text-sm font-medium text-white sm:text-base">{faq.question}</span>
-                    <span className="text-cyan-300" aria-hidden>
-                      {isOpen ? '−' : '+'}
-                    </span>
-                  </button>
-                  {isOpen ? (
-                    <div className="border-t border-slate-800/80 px-5 py-4 text-sm leading-relaxed text-slate-400 sm:text-base">
-                      {faq.answer}
-                    </div>
-                  ) : null}
-                </article>
-              )
-            })}
+            {faqs.map((faq, index) => (
+              <FaqItem
+                key={faq.question}
+                question={faq.question}
+                answer={faq.answer}
+                defaultOpen={index === 0}
+              />
+            ))}
           </div>
         </section>
 
         <Reveal>
-          <section className="cta-glow finale-cta rounded-3xl border border-cyan-300/20 bg-gradient-to-r from-cyan-400/10 via-blue-500/10 to-violet-500/10 p-8 sm:p-12">
-            <h2 className="text-3xl font-semibold text-white sm:text-4xl">Ready when you are.</h2>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
-              Share where you are stuck—we’ll reply with an honest view and next steps.
+          <section className="cta-panel relative rounded-2xl p-8 sm:p-12">
+            <h2 className="relative text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              Ready to build on Shopify?
+            </h2>
+            <p className="relative mt-4 max-w-xl text-base leading-relaxed text-muted">
+              Tell us about your store, timeline, and goals—we&apos;ll reply with honest next steps from
+              our Shopify team.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                to="/contact"
-                className="rounded-full bg-cyan-300 px-8 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-              >
+            <div className="relative mt-8 flex flex-wrap gap-4">
+              <Link to="/contact" className="btn-primary px-8 py-3.5 text-sm">
                 Get in touch
               </Link>
-              <Link
-                to="/case-studies"
-                className="rounded-full border border-slate-500 px-8 py-3.5 text-sm font-semibold text-white transition hover:border-cyan-200 hover:text-cyan-200"
-              >
-                Example outcomes
+              <Link to="/case-studies" className="btn-secondary px-8 py-3.5 text-sm">
+                View portfolio
               </Link>
             </div>
           </section>
