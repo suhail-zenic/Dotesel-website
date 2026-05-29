@@ -1,59 +1,14 @@
 import { portfolioCategories } from '../home-data'
 import { StorePreview } from './StorePreview'
 
-const metrics = [
-  { id: 'conversion', label: 'Conversion', value: '+32%', delay: '0s' },
-  { id: 'speed', label: 'Page speed', value: '98', delay: '0.35s' },
-  { id: 'stores', label: 'Stores live', value: '7+', delay: '0.7s' },
-] as const
-
 export function HeroShowcase() {
   const previewStores = portfolioCategories.flatMap((c) => c.projects).slice(0, 4)
 
   return (
     <div className="hero-showcase relative mx-auto w-full max-w-lg lg:max-w-none">
-      <div className="showcase-ring pointer-events-none absolute inset-3 rounded-[2rem] opacity-50 sm:inset-4" aria-hidden />
+      <div className="showcase-ring pointer-events-none absolute -inset-4 rounded-[2rem] opacity-60" aria-hidden />
 
-      {/* Corner badges — sit in padding, not over the browser */}
-      <div
-        className="showcase-pill showcase-pill-tl glass-card pointer-events-none absolute left-0 top-0 z-20 rounded-full border border-brand/30 bg-brand-muted px-2.5 py-1 text-[10px] font-semibold text-brand shadow-lg backdrop-blur-md sm:px-3.5 sm:py-1.5 sm:text-xs"
-        style={{ animationDelay: '0.2s' }}
-      >
-        Shopify OS 2.0
-      </div>
-
-      <div
-        className="showcase-pill showcase-pill-tr glass-card pointer-events-none absolute right-0 top-0 z-20 rounded-xl border border-line/70 px-2.5 py-1.5 shadow-lg backdrop-blur-md sm:px-3 sm:py-2"
-        style={{ animationDelay: metrics[0].delay }}
-      >
-        <p className="text-[9px] font-medium uppercase tracking-wider text-muted sm:text-[10px]">
-          {metrics[0].label}
-        </p>
-        <p className="text-xs font-bold text-brand sm:text-sm">{metrics[0].value}</p>
-      </div>
-
-      <div
-        className="showcase-pill showcase-pill-bl glass-card pointer-events-none absolute bottom-0 left-0 z-20 rounded-xl border border-line/70 px-2.5 py-1.5 shadow-lg backdrop-blur-md sm:px-3 sm:py-2"
-        style={{ animationDelay: metrics[1].delay }}
-      >
-        <p className="text-[9px] font-medium uppercase tracking-wider text-muted sm:text-[10px]">
-          {metrics[1].label}
-        </p>
-        <p className="text-xs font-bold text-brand sm:text-sm">{metrics[1].value}</p>
-      </div>
-
-      <div
-        className="showcase-pill showcase-pill-br glass-card pointer-events-none absolute bottom-0 right-0 z-20 rounded-xl border border-line/70 px-2.5 py-1.5 shadow-lg backdrop-blur-md sm:px-3 sm:py-2"
-        style={{ animationDelay: metrics[2].delay }}
-      >
-        <p className="text-[9px] font-medium uppercase tracking-wider text-muted sm:text-[10px]">
-          {metrics[2].label}
-        </p>
-        <p className="text-xs font-bold text-brand sm:text-sm">{metrics[2].value}</p>
-      </div>
-
-      {/* Browser mock — inset so corner pills stay clear */}
-      <div className="showcase-browser glass-card relative z-10 mx-7 mt-9 mb-9 overflow-hidden rounded-2xl border border-line/80 shadow-2xl sm:mx-9 sm:mt-10 sm:mb-10 lg:mx-10">
+      <div className="showcase-browser glass-card relative z-10 overflow-hidden rounded-2xl border border-line/80 shadow-2xl">
         <div className="flex items-center gap-2 border-b border-line/80 bg-canvas/80 px-4 py-3 backdrop-blur-md">
           <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
           <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
