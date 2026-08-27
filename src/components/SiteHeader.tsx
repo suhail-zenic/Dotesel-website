@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { mainNavLinks } from '../home-data'
+import { contactPhone, contactPhoneTel, mainNavLinks } from '../home-data'
 import { useSiteScroll } from '../context/SiteScrollContext'
 
 type SiteHeaderProps = {
@@ -25,16 +25,6 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
           useGlass ? 'glass-nav mt-3 rounded-2xl' : 'mt-3'
         }`}
       >
-        <Link to="/" className="inline-flex w-[88px] shrink-0 items-center md:w-[96px]">
-          <img
-            src="/Dotsel.png"
-            alt="Dotsel Shopify developers"
-            className="h-6 w-auto object-contain sm:h-7 md:h-8"
-            loading="eager"
-            decoding="async"
-          />
-        </Link>
-
         <nav className="hidden flex-1 items-center justify-center gap-8 text-sm font-medium md:flex" aria-label="Primary">
           {mainNavLinks.map((link) => {
             const isActive = activePath === link.to
@@ -53,8 +43,8 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
           })}
         </nav>
 
-        <a href="tel:8848260744" className="btn-primary hidden shrink-0 px-5 py-2 text-sm md:inline-flex">
-          Call now
+        <a href={`tel:${contactPhoneTel}`} className="btn-primary hidden shrink-0 px-5 py-2 text-sm md:inline-flex">
+          {contactPhone}
         </a>
 
         <button
@@ -86,8 +76,8 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
                 </Link>
               )
             })}
-            <a href="tel:8848260744" className="btn-primary mt-2 py-3 text-center text-sm">
-              Call now
+            <a href={`tel:${contactPhoneTel}`} className="btn-primary mt-2 py-3 text-center text-sm">
+              {contactPhone}
             </a>
           </div>
         </div>

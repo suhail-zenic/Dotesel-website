@@ -4,7 +4,7 @@ export function AnimatedOutlet() {
   const { pathname } = useLocation()
 
   return (
-    <div key={pathname} className="page-enter relative z-[1]">
+    <div key={pathname} className="page-enter relative z-[2]">
       <Outlet />
     </div>
   )

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { observeReveal, unobserveReveal } from '../utils/revealObserver'
 
 export function Reveal({
   children,
@@ -18,14 +19,8 @@ export function Reveal({
     const el = ref.current
     if (!el) return
 
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) setVisible(true)
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
+    observeReveal(el, () => setVisible(true))
+    return () => unobserveReveal(el)
   }, [])
 
   return (

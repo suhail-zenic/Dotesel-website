@@ -2,7 +2,7 @@ import { portfolioCategories } from '../home-data'
 import { StorePreview } from './StorePreview'
 
 export function HeroShowcase() {
-  const previewStores = portfolioCategories.flatMap((c) => c.projects).slice(0, 4)
+  const previewStores = portfolioCategories.flatMap((c) => c.projects)
 
   return (
     <div className="hero-showcase relative mx-auto w-full max-w-lg lg:max-w-none">
@@ -28,15 +28,20 @@ export function HeroShowcase() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 sm:gap-3">
-            {previewStores.map((store, i) => (
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2.5 lg:grid-cols-4">
+            {previewStores.map((store, i) => {
+              const isLastOdd =
+                i === previewStores.length - 1 && previewStores.length % 3 === 1
+              return (
               <a
                 key={store.url}
                 href={store.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="showcase-tile group/tile block overflow-hidden rounded-xl border border-line/60 bg-surface/80 transition-all duration-500 hover:border-brand/40 hover:shadow-lg hover:shadow-brand/10"
-                style={{ animationDelay: `${i * 0.12}s` }}
+                className={`showcase-tile group/tile block overflow-hidden rounded-xl border border-line/60 bg-surface/80 transition-all duration-500 hover:border-brand/40 hover:shadow-lg hover:shadow-brand/10 ${
+                  isLastOdd ? 'sm:col-start-2 lg:col-start-auto' : ''
+                }`}
+                style={{ animationDelay: `${i * 0.08}s` }}
               >
                 <StorePreview
                   url={store.url}
@@ -50,7 +55,7 @@ export function HeroShowcase() {
                   <p className="truncate text-[9px] text-muted">{store.displayUrl}</p>
                 </div>
               </a>
-            ))}
+            )})}
           </div>
 
           <div className="mt-4 flex gap-2">

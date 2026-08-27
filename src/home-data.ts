@@ -3,236 +3,242 @@ export type Service = {
   description: string
 }
 
-export type Stat = {
-  label: string
-  value: string
+export type ProcessStep = {
+  step: string
+  title: string
+  body: string
 }
+
+export type WhyDotselItem = {
+  title: string
+  description: string
+}
+
+export type TechnologyTile = {
+  title: string
+  detail: string
+}
+
+export const companyName = 'Dotsel Automation & Venture Pvt. Ltd.'
+
+export const heroHeadline = [
+  'BEYOND SOFTWARE.',
+  'BUILT FOR LONG-TERM',
+  'PARTNERSHIPS.',
+] as const
+
+export const siteTagline =
+  'From the first idea to ongoing growth, we stand beside your business every step of the way.'
+
+export const contactPhone = '+91 7902531846'
+export const contactPhoneTel = '917902531846'
+export const siteUrl = 'dotselautomation.com'
+
+export const whoWeAre = [
+  'Dotsel Automation & Venture Pvt. Ltd. is a software development and technology service company founded in 2023, currently operating from Adimali, Idukki, Kerala.',
+  'We collaborate with brands as their technology and software development partner, providing reliable, stress-free software services tailored to their business needs. Rather than simply delivering a project and moving on, we work closely with our clients throughout their journey—from understanding their ideas and requirements to developing, launching, maintaining, and improving their software solutions.',
+  'We believe the best technology partnerships are built on trust, clear communication, and long-term collaboration. Our goal is to work and grow together with brands that are looking for a dependable software development partner they can rely on for the long term.',
+] as const
+
+export const beliefs = [
+  'Committed to delivering reliable, high-standard solutions',
+  'Always striving to improve, innovate, and deliver better.',
+  'Dedicated to supporting our clients beyond delivery.',
+  'We grow together with the brands we work with.',
+] as const
 
 export const services: Service[] = [
   {
-    title: 'Custom Shopify themes',
+    title: 'Custom Software Development',
     description:
-      'Online Store 2.0 themes tailored to your brand—fast, accessible, and built for conversion.',
+      'Business-focused software built around your unique processes, requirements, and goals.',
   },
   {
-    title: 'Shopify app development',
+    title: 'Mobile App Development',
     description:
-      'Private and public apps that extend checkout, operations, and customer experience.',
+      'Modern Android & iOS applications designed for performance, usability, and scalability.',
   },
   {
-    title: 'Store setup & migration',
+    title: 'Web & Business Platforms',
     description:
-      'Launch new stores or move from WooCommerce, Magento, or another platform without losing SEO.',
+      'Professional websites, web applications, portals, and platforms that strengthen your digital presence.',
   },
   {
-    title: 'Speed, CRO & integrations',
+    title: 'AI-Powered Solutions',
     description:
-      'Core Web Vitals, payment flows, ERP/3PL, and marketing tools wired in cleanly.',
+      'Practical AI tools, intelligent assistants, and automation designed to improve productivity and decision-making.',
+  },
+  {
+    title: 'UI/UX & Product Design',
+    description:
+      'Clean, intuitive, and user-focused experiences that make your software simple and effective.',
+  },
+  {
+    title: 'CRM & ERP Solutions',
+    description:
+      'Centralize your operations, customers, sales, finance, and business workflows in one powerful system.',
   },
 ]
 
-export const stats: Stat[] = [
-  { label: 'Shopify stores delivered', value: '120+' },
-  { label: 'Client satisfaction', value: '98%' },
-  { label: 'Avg. conversion lift', value: '28%' },
-  { label: 'Countries served', value: '14' },
+export const processSteps: ProcessStep[] = [
+  {
+    step: '1',
+    title: 'Understand',
+    body: 'We first understand your business, challenges, goals, and users before recommending a solution.',
+  },
+  {
+    step: '2',
+    title: 'Plan',
+    body: 'We define the right features, technology, timeline, and development strategy to create a clear roadmap.',
+  },
+  {
+    step: '3',
+    title: 'Build',
+    body: 'Our team develops with a focus on quality, performance, security, scalability, and user experience.',
+  },
+  {
+    step: '4',
+    title: 'Deliver',
+    body: 'We ensure proper testing, smooth deployment, and a reliable handover with everything your business needs.',
+  },
+  {
+    step: '5',
+    title: 'Support',
+    body: "Our relationship doesn't end after delivery. We provide ongoing support, maintenance, improvements, and guidance as your business grows.",
+  },
 ]
-
-export const testimonials = [
-  {
-    quote:
-      'Dotsel rebuilt our theme and checkout flow. Page speed improved and our conversion rate followed within weeks.',
-    author: 'Priya Nair',
-    role: 'Founder, Lumen Skincare',
-  },
-  {
-    quote:
-      'They migrated us to Shopify Plus without downtime. Catalog, redirects, and subscriptions were handled properly.',
-    author: 'James Cole',
-    role: 'E-commerce Director, Northline Goods',
-  },
-  {
-    quote:
-      'Our custom app for wholesale pricing went live on schedule. Clear communication and solid Liquid + React work.',
-    author: 'Elena Vasquez',
-    role: 'COO, Forge Supply Co.',
-  },
-]
-
-export const storeTypes = [
-  'Fashion & apparel',
-  'Beauty & wellness',
-  'Food & beverage',
-  'B2B wholesale',
-  'DTC brands',
-] as const
-
-export type StoreTypeName = (typeof storeTypes)[number]
-
-export const storeTypeContent: Record<
-  StoreTypeName,
-  { headline: string; summary: string; focus: string[] }
-> = {
-  'Fashion & apparel': {
-    headline: 'Lookbooks, variants, and size guides that convert',
-    summary:
-      'We build merchandising flows, collection filters, and mobile-first PDPs for fashion brands on Shopify.',
-    focus: [
-      'Swatches, bundles, and smart collection rules',
-      'International sizing and multi-currency',
-      'UGC, reviews, and retention integrations',
-    ],
-  },
-  'Beauty & wellness': {
-    headline: 'Subscriptions and compliance-friendly storefronts',
-    summary:
-      'Recharge-style subscriptions, ingredient transparency, and trust signals baked into the theme.',
-    focus: [
-      'Subscribe & save and replenishment flows',
-      'Regulatory copy and variant labeling',
-      'Quiz funnels and personalized recommendations',
-    ],
-  },
-  'Food & beverage': {
-    headline: 'Delivery zones, freshness, and repeat orders',
-    summary:
-      'Local delivery rules, inventory per location, and subscription boxes for food brands.',
-    focus: [
-      'Location-based shipping and pickup',
-      'Expiry-aware merchandising where needed',
-      'Loyalty and email capture at checkout',
-    ],
-  },
-  'B2B wholesale': {
-    headline: 'Net terms, catalogs, and buyer portals',
-    summary:
-      'Shopify Plus B2B, custom pricing, and approval workflows for wholesale teams.',
-    focus: [
-      'Company accounts and price lists',
-      'Quick order forms and CSV reorder',
-      'ERP and inventory sync patterns',
-    ],
-  },
-  'DTC brands': {
-    headline: 'Launch fast, scale without replatforming',
-    summary:
-      'From first SKU to seven-figure revenue—we architect Shopify stores that grow with you.',
-    focus: [
-      'Launch playbooks and theme systems',
-      'Paid media landing pages and A/B tests',
-      'Headless or Hydrogen when the roadmap calls for it',
-    ],
-  },
-}
 
 export const faqs = [
   {
-    question: 'Are you certified Shopify developers?',
+    question: 'How do you charge for a project?',
     answer:
-      'Yes. We are a dedicated team of Shopify developers—theme, app, and store specialists. We work in Liquid, Shopify APIs, and the modern app stack daily.',
+      "We don't follow a one-size-fits-all pricing model. We first understand your business, target audience, and requirements, then define the necessary modules and features. The project cost is calculated based on the scope, complexity, and modules involved, ensuring you pay for what your business actually needs.",
   },
   {
-    question: 'How long does a typical Shopify project take?',
+    question: 'Do you provide support after the project is completed?',
     answer:
-      'Theme builds often run 4–8 weeks. Migrations and custom apps vary with catalog size and integrations—we give a clear timeline after discovery.',
+      'Yes. We provide support and maintenance options for bug fixes, updates, improvements, server management, and ongoing technical assistance.',
   },
   {
-    question: 'Can you migrate our existing store to Shopify?',
+    question: 'Do you work with clients for the long term?',
     answer:
-      'Absolutely. We handle products, customers, orders history where supported, URL redirects, and SEO preservation.',
+      'Yes. We aim to build long-term partnerships rather than simply completing a project. As your business evolves, we can continue to improve and support your technology.',
   },
   {
-    question: 'Do you support Shopify Plus?',
+    question: 'How involved do we need to be during development?',
     answer:
-      'Yes—checkout extensibility, B2B, launchpad, and Plus-specific workflows are part of our toolkit.',
+      'We keep communication simple and structured. We discuss requirements, share progress, collect feedback, and keep you informed throughout the development process.',
+  },
+  {
+    question: 'Can you improve or maintain our existing application?',
+    answer:
+      'Yes. We can work with existing software, understand the current system, fix issues, add new features, improve performance, and continue development.',
+  },
+  {
+    question: 'Can the software grow with our business?',
+    answer:
+      'Yes. We plan the architecture and modules with future growth in mind, allowing new features, users, integrations, and business requirements to be added over time.',
   },
 ]
 
-export const trustMarks = [
-  'Shopify-first team',
-  'Conversion-focused builds',
-  'Clean, maintainable code',
-  'Post-launch support',
-]
-
-export const caseStudies = [
+export const whyDotsel: WhyDotselItem[] = [
   {
-    title: 'Fashion brand theme rebuild',
-    impact: '+32% conversion',
-    summary:
-      'Custom OS 2.0 theme, improved PDP, and faster mobile checkout for a mid-market apparel label.',
+    title: 'Business-First Approach',
+    description: 'We understand your business before recommending technology',
   },
   {
-    title: 'Magento → Shopify Plus migration',
-    impact: '6-week go-live',
-    summary:
-      '12k SKUs, B2B price lists, and ERP sync with zero extended downtime during cutover.',
+    title: 'Solutions Built For You',
+    description: 'Every solution is planned around your requirements, workflows, and audience.',
   },
   {
-    title: 'Wholesale pricing app',
-    impact: '-40% manual orders',
-    summary:
-      'Private app for tiered pricing and quick reorder—integrated with existing buyer accounts.',
-  },
-]
-
-export const innovationPillars = [
-  {
-    title: 'Shopify-native craft',
-    description: 'We build the way Shopify intends—themes, apps, and admin that stay upgrade-friendly.',
+    title: 'Transparent Communication',
+    description: 'Clear scope, regular updates, and no unnecessary complexity.',
   },
   {
-    title: 'Revenue over vanity',
-    description: 'Every decision ties to conversion, speed, and operations your team runs daily.',
+    title: 'Quality That Lasts',
+    description: 'We focus on reliable, scalable, and maintainable software.',
   },
   {
-    title: 'Partners, not vendors',
-    description: 'Plain updates, honest timelines, and developers you can reach after launch.',
+    title: 'Long-Term Partnership',
+    description:
+      'We stay with you beyond launch through support, maintenance, and improvements.',
+  },
+  {
+    title: 'Ready To Grow',
+    description: 'Your software is built to adapt as your business and requirements evolve.',
   },
 ]
 
-export const outcomes = [
-  { label: 'Faster page loads', value: 45 },
-  { label: 'Checkout friction reduced', value: 38 },
-  { label: 'Manual ops time saved', value: 52 },
-  { label: 'Mobile conversion uplift', value: 29 },
-]
-
-export const shopifyStack = [
-  { title: 'Liquid & OS 2.0', detail: 'Sections, metafields, and theme architecture that merchants can manage.', wide: true },
-  { title: 'Shopify Functions', detail: 'Discounts, delivery, and payment customizations at checkout.' },
-  { title: 'Storefront API', detail: 'Headless and Hydrogen when you need custom frontends.' },
-  { title: 'Admin & Flow', detail: 'Automations, webhooks, and operational tooling in admin.' },
-  { title: 'Apps & extensions', detail: 'React Router apps, checkout UI extensions, and embedded admin.' },
-  { title: 'Integrations', detail: 'Klaviyo, Recharge, ERP, 3PL, and analytics wired correctly.' },
-]
-
-export const processSteps = [
+export const technologies: TechnologyTile[] = [
   {
-    step: '01',
-    title: 'Discover',
-    body: 'Goals, catalog, integrations, and success metrics—aligned before design starts.',
+    title: 'Mobile App Development',
+    detail: 'Flutter · Android · iOS · Cross-Platform Applications',
   },
   {
-    step: '02',
-    title: 'Build',
-    body: 'Theme, app, or migration in milestones with staging previews you can share.',
+    title: 'Backend Development',
+    detail: 'Node.js · PHP · REST APIs · FastApi · Authentication · Database Systems',
   },
   {
-    step: '03',
-    title: 'Launch & grow',
-    body: 'Go-live support, monitoring, and iteration as your store scales.',
+    title: 'AI & Automation',
+    detail: 'AI Assistants · AI Chatbots · Voice AI · AI APIs · Business Automation',
+  },
+  {
+    title: 'Static Website Development',
+    detail: 'Flutter · Android · iOS · Cross-Platform Applications',
+  },
+  {
+    title: 'Database & Storage',
+    detail: 'MySQL · MongoDB · Firebase · Cloud Storage',
+  },
+  {
+    title: 'UI/UX & Design',
+    detail: 'Responsive Design · User Interfaces · Prototyping · Design Systems',
+  },
+  {
+    title: 'Static Website Development',
+    detail: 'PHP · Node.js · React · MySQL · MongoDB · REST APIs',
+  },
+  {
+    title: 'Cloud & Server',
+    detail: 'Cloud Hosting · VPS · Server Management · Deployment · SSL',
+  },
+  {
+    title: 'Security & Authentication',
+    detail: 'User Authentication · Role Management · API Security · Data Protection',
   },
 ]
 
+export const ctaClosingLines = [
+  "Let's discuss your idea.",
+  "Let's build the solution.",
+  "Let's grow together.",
+] as const
+
+export const ctaTagline = 'Your Idea • Our Expertise • One Long-Term Partnership'
+
+export const mainNavLinks = [
+  { label: 'Services', to: '/solutions' },
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
+] as const
+
+export const socialLinks = {
+  facebook: 'https://www.facebook.com/share/1HhJeBHqZb/',
+  instagram: 'https://www.instagram.com/dotsel_automation_and_ventures/',
+} as const
+
+export const whatsappUrl =
+  'https://wa.me/917902531846?text=Hi%20Dotsel%2C%20I%27d%20like%20to%20discuss%20a%20project%20with%20you.'
+
+/** @deprecated kept for portfolio page */
 export type PortfolioProject = {
   name: string
   url: string
   displayUrl: string
-  /** Optional local screenshot in /public e.g. /portfolio/taruni.webp */
   previewImage?: string
 }
 
+/** @deprecated kept for portfolio page */
 export type PortfolioCategory = {
   id: string
   emoji: string
@@ -258,6 +264,7 @@ function project(name: string, rawUrl: string): PortfolioProject {
   return { name, url, displayUrl: displayHost(url) }
 }
 
+/** @deprecated kept for portfolio page */
 export const portfolioCategories: PortfolioCategory[] = [
   {
     id: 'clothing',
@@ -287,31 +294,86 @@ export const portfolioCategories: PortfolioCategory[] = [
   },
 ]
 
-export const mainNavLinks = [
-  { label: 'Services', to: '/solutions' },
-  { label: 'Portfolio', to: '/case-studies' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
+/** @deprecated kept for legacy pages */
+export const innovationPillars = whyDotsel.map((item) => ({
+  title: item.title,
+  description: item.description,
+}))
+
+/** @deprecated kept for legacy pages */
+export const shopifyStack = technologies
+
+/** @deprecated kept for legacy pages */
+export const storeTypes = [
+  'Fashion & apparel',
+  'Beauty & wellness',
+  'Food & beverage',
+  'B2B wholesale',
+  'DTC brands',
 ] as const
 
-export const socialLinks = {
-  facebook: 'https://www.facebook.com/share/1HhJeBHqZb/',
-  instagram: 'https://www.instagram.com/dotsel_automation_and_ventures/',
-} as const
+/** @deprecated kept for legacy pages */
+export const storeTypeContent: Record<
+  (typeof storeTypes)[number],
+  { headline: string; summary: string; focus: string[] }
+> = {
+  'Fashion & apparel': {
+    headline: 'Lookbooks, variants, and size guides that convert',
+    summary: 'We build merchandising flows, collection filters, and mobile-first PDPs for fashion brands.',
+    focus: ['Swatches, bundles, and smart collection rules', 'International sizing and multi-currency', 'UGC, reviews, and retention integrations'],
+  },
+  'Beauty & wellness': {
+    headline: 'Subscriptions and compliance-friendly storefronts',
+    summary: 'Recharge-style subscriptions, ingredient transparency, and trust signals baked into the theme.',
+    focus: ['Subscribe & save and replenishment flows', 'Regulatory copy and variant labeling', 'Quiz funnels and personalized recommendations'],
+  },
+  'Food & beverage': {
+    headline: 'Delivery zones, freshness, and repeat orders',
+    summary: 'Local delivery rules, inventory per location, and subscription boxes for food brands.',
+    focus: ['Location-based shipping and pickup', 'Expiry-aware merchandising where needed', 'Loyalty and email capture at checkout'],
+  },
+  'B2B wholesale': {
+    headline: 'Net terms, catalogs, and buyer portals',
+    summary: 'Shopify Plus B2B, custom pricing, and approval workflows for wholesale teams.',
+    focus: ['Company accounts and price lists', 'Quick order forms and CSV reorder', 'ERP and inventory sync patterns'],
+  },
+  'DTC brands': {
+    headline: 'Launch fast, scale without replatforming',
+    summary: 'From first SKU to seven-figure revenue—we architect stores that grow with you.',
+    focus: ['Launch playbooks and theme systems', 'Paid media landing pages and A/B tests', 'Headless or Hydrogen when the roadmap calls for it'],
+  },
+}
 
-export const siteTagline = 'A team of Shopify developers building stores that sell.'
+/** @deprecated kept for legacy pages */
+export const caseStudies = [
+  {
+    title: 'Fashion brand theme rebuild',
+    impact: '+32% conversion',
+    summary: 'Custom OS 2.0 theme, improved PDP, and faster mobile checkout for a mid-market apparel label.',
+  },
+  {
+    title: 'Magento → Shopify Plus migration',
+    impact: '6-week go-live',
+    summary: '12k SKUs, B2B price lists, and ERP sync with zero extended downtime during cutover.',
+  },
+  {
+    title: 'Wholesale pricing app',
+    impact: '-40% manual orders',
+    summary: 'Private app for tiered pricing and quick reorder—integrated with existing buyer accounts.',
+  },
+]
 
-export const whatsappUrl =
-  'https://wa.me/918848260744?text=Hi%20Dotsel%2C%20we%27re%20looking%20for%20Shopify%20developers%20for%20our%20store.'
-
-/** @deprecated use storeTypes */
+/** @deprecated kept for legacy pages */
 export const industries = storeTypes
 
-/** @deprecated use storeTypeContent */
+/** @deprecated kept for legacy pages */
 export const industryPageContent = storeTypeContent
 
-export const integrationTiles = shopifyStack
+/** @deprecated kept for legacy pages */
+export const integrationTiles = technologies
 
+/** @deprecated kept for legacy pages */
 export const engineeringHighlights = processSteps.map((s) => `${s.title}: ${s.body}`)
 
+/** @deprecated kept for legacy pages */
 export const blueprintGoals = ['Launch store', 'Migrate platform', 'Custom theme', 'Build an app', 'Improve conversion'] as const

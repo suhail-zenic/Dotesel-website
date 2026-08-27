@@ -6,7 +6,7 @@
   --color-brand-dark: #0f2e24;
   --color-brand-muted: rgba(62, 207, 142, 0.14);
   --color-brand-glow: rgba(62, 207, 142, 0.4);
-  --color-canvas: #060a09;
+  --color-canvas: #000000;
   --color-surface: #0c1210;
   --color-surface-elevated: #131c18;
   --color-ink: #f0fdf8;
@@ -39,12 +39,13 @@ body,
   min-height: 100%;
   overflow-x: clip;
   max-width: 100%;
+  background-color: #000000;
 }
 
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: var(--color-canvas);
+  background-color: #000000;
   color: var(--color-ink);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -58,7 +59,7 @@ h3 {
 
 main > section {
   content-visibility: auto;
-  contain-intrinsic-size: 1px 700px;
+  contain-intrinsic-size: auto 700px;
 }
 
 * {
@@ -66,11 +67,15 @@ main > section {
 }
 
 /* —— Ambient background —— */
+.ambient-root {
+  background-color: #000000;
+}
+
 .ambient-orb {
   position: absolute;
   border-radius: 9999px;
   filter: blur(90px);
-  opacity: 0.45;
+  opacity: 0;
   animation: orbFloat 20s ease-in-out infinite;
 }
 
@@ -101,6 +106,7 @@ main > section {
 }
 
 .ambient-grid {
+  opacity: 0;
   background-image:
     linear-gradient(rgba(62, 207, 142, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(62, 207, 142, 0.04) 1px, transparent 1px);
@@ -109,6 +115,7 @@ main > section {
 }
 
 .ambient-noise {
+  opacity: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
 }
@@ -137,6 +144,296 @@ main > section {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* —— Who We Are (brochure) —— */
+.who-we-are-section {
+  background: transparent;
+}
+
+.who-we-are-heading {
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.who-belief-card,
+.what-we-do-card,
+.why-dotsel-card {
+  border: 1px solid rgba(62, 207, 142, 0.2);
+  background:
+    radial-gradient(ellipse 75% 90% at 100% 0%, rgba(20, 110, 60, 0.28) 0%, transparent 52%),
+    radial-gradient(ellipse 55% 45% at 0% 100%, rgba(6, 35, 18, 0.45) 0%, transparent 48%),
+    linear-gradient(90deg, #020802 0%, #051505 42%, #0a220a 100%);
+  box-shadow: inset 0 1px 0 rgba(62, 207, 142, 0.12);
+}
+
+.who-belief-card {
+  border-radius: 0.75rem;
+  padding: 1rem 1.15rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .who-belief-card {
+    padding: 1.1rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* —— What We Do (brochure) —— */
+.what-we-do-section {
+  background: transparent;
+}
+
+.what-we-do-heading {
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.what-we-do-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.85rem;
+  padding: 1.15rem 1.2rem 1.25rem;
+  min-height: 9.5rem;
+}
+
+.what-we-do-card::after {
+  content: '';
+  position: absolute;
+  right: -0.5rem;
+  bottom: -0.5rem;
+  width: 55%;
+  height: 55%;
+  opacity: 0.22;
+  pointer-events: none;
+  background-image:
+    linear-gradient(45deg, transparent 46%, rgba(62, 207, 142, 0.55) 47%, rgba(62, 207, 142, 0.55) 53%, transparent 54%),
+    linear-gradient(-45deg, transparent 46%, rgba(62, 207, 142, 0.55) 47%, rgba(62, 207, 142, 0.55) 53%, transparent 54%);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(ellipse 90% 90% at 100% 100%, black 15%, transparent 72%);
+}
+
+.what-we-do-badge {
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.85) 65%);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.08);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* —— Our Approach (brochure) —— */
+.our-approach-section {
+  background: transparent;
+}
+
+.our-approach-heading {
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.approach-timeline {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.approach-timeline::before {
+  content: '';
+  position: absolute;
+  left: 1.1875rem;
+  top: 1.375rem;
+  bottom: 1.375rem;
+  width: 2px;
+  background: #3ecf8e;
+}
+
+.approach-timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.375rem 1fr;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+
+.approach-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.approach-timeline-marker {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.125rem;
+}
+
+.approach-hex {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  height: 2.375rem;
+  width: 2.125rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.approach-hex::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #3ecf8e;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.approach-hex::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: #000;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.approach-hex-label {
+  position: relative;
+  z-index: 1;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* —— FAQ (brochure) —— */
+.faq-section {
+  background: transparent;
+}
+
+.faq-heading {
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.faq-card {
+  min-width: 0;
+}
+
+.faq-q-icon {
+  display: inline-flex;
+  height: 1.75rem;
+  width: 1.75rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.88) 68%);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.06);
+}
+
+/* —— Why Dotsel (brochure) —— */
+.why-dotsel-section {
+  background: transparent;
+}
+
+.why-dotsel-heading {
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.why-dotsel-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.85rem;
+  padding: 1.15rem 1.2rem 1.25rem;
+  min-height: 8.5rem;
+}
+
+.why-dotsel-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(62, 207, 142, 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 207, 142, 0.45) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* —— Technologies We Use (brochure) —— */
+.technologies-section {
+  background: transparent;
+}
+
+.technologies-heading {
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.tech-tile {
+  min-width: 0;
+}
+
+.tech-tile-header {
+  display: flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(42, 42, 42, 0.95) 0%, rgba(28, 28, 28, 0.98) 100%);
+  padding: 0.85rem 1rem;
+  text-align: center;
+}
+
+.tech-tile-detail {
+  margin-top: 0.85rem;
+  padding-left: 0.85rem;
+  border-left: 2px solid #3ecf8e;
+  box-shadow: -1px 0 8px rgba(62, 207, 142, 0.35);
+}
+
+/* —— Let's Build Together (brochure) —— */
+.lets-build-section {
+  background: transparent;
+}
+
+.lets-build-heading {
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
 }
 
 /* —— Typography —— */
@@ -328,6 +625,138 @@ main > section {
 }
 
 /* —— Hero —— */
+.brochure-hero {
+  isolation: isolate;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 100dvh;
+}
+
+.brochure-contours {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.brochure-contour {
+  position: absolute;
+  width: clamp(180px, 28vw, 360px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background-image: url('/brochure-contour-wave.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: var(--contour-opacity, 0.85);
+  user-select: none;
+  animation: brochureContourDrift 16s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.brochure-contours--active .brochure-contour {
+  animation-play-state: running;
+}
+
+.brochure-contour-ring {
+  display: none;
+}
+
+.brochure-contour--top-right {
+  --contour-rotate: 12deg;
+  --contour-opacity: 0.85;
+  top: -4%;
+  right: -2%;
+  animation-duration: 14s;
+  animation-delay: 0s;
+}
+
+.brochure-contour--center {
+  --contour-rotate: -8deg;
+  --contour-opacity: 0.55;
+  top: 34%;
+  left: 38%;
+  width: clamp(140px, 22vw, 280px);
+  height: auto;
+  animation-duration: 18s;
+  animation-delay: -3s;
+}
+
+.brochure-contour--bottom-left {
+  --contour-rotate: -18deg;
+  --contour-opacity: 0.85;
+  bottom: -6%;
+  left: -4%;
+  animation-duration: 20s;
+  animation-delay: -6s;
+}
+
+.brochure-contour--bottom-right {
+  --contour-rotate: 22deg;
+  --contour-opacity: 0.7;
+  bottom: 8%;
+  right: 12%;
+  width: clamp(160px, 24vw, 320px);
+  height: auto;
+  animation-duration: 15s;
+  animation-delay: -9s;
+}
+
+@keyframes brochureContourDrift {
+  0%,
+  100% {
+    transform: rotate(var(--contour-rotate, 0deg)) scale(1) translate3d(0, 0, 0);
+    opacity: var(--contour-opacity, 0.85);
+  }
+  33% {
+    transform: rotate(calc(var(--contour-rotate, 0deg) + 5deg)) scale(1.05) translate3d(10px, -8px, 0);
+    opacity: min(calc(var(--contour-opacity, 0.85) + 0.08), 1);
+  }
+  66% {
+    transform: rotate(calc(var(--contour-rotate, 0deg) - 4deg)) scale(1.03) translate3d(-8px, 10px, 0);
+    opacity: min(calc(var(--contour-opacity, 0.85) + 0.14), 1);
+  }
+}
+
+@keyframes brochureContourRing {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes brochureContourFlow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -150;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brochure-contour,
+  .brochure-contour-ring {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .brochure-contour--center {
+    left: 55%;
+    top: 42%;
+    --contour-opacity: 0.35;
+  }
+
+  .brochure-contour--bottom-right {
+    bottom: 14%;
+    right: -6%;
+    --contour-opacity: 0.45;
+  }
+}
+
 .hero-grid-pattern {
   background-image:
     linear-gradient(rgba(62, 207, 142, 0.06) 1px, transparent 1px),
@@ -530,7 +959,7 @@ main > section {
 /* —— Reveal —— */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translate3d(0, 28px, 0);
   transition:
     opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
@@ -538,12 +967,12 @@ main > section {
 
 .reveal.reveal-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 .stagger-children > * {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translate3d(0, 16px, 0);
   transition:
     opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
@@ -551,7 +980,7 @@ main > section {
 
 .stagger-children.reveal-visible > * {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 .stagger-children.reveal-visible > *:nth-child(1) {

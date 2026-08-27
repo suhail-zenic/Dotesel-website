@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SiteHeader } from '../components/SiteHeader'
-import { whatsappUrl } from '../home-data'
+import {
+  companyName,
+  contactPhone,
+  contactPhoneTel,
+  ctaClosingLines,
+  ctaTagline,
+  siteUrl,
+  whatsappUrl,
+} from '../home-data'
 
 export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'success'>('idle')
 
   useEffect(() => {
-    document.title = 'Contact | Dotsel Shopify Developers'
+    document.title = 'Contact | Dotsel Automation & Venture Pvt. Ltd.'
   }, [])
 
   return (
@@ -17,14 +25,24 @@ export default function ContactPage() {
       </div>
 
       <main className="mx-auto min-w-0 w-full max-w-7xl px-6 py-16 lg:px-10">
-        <p className="section-label">Contact</p>
+        <p className="section-label">Let&apos;s Build Together</p>
         <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
-          Talk to our Shopify developers.
+          Have an Idea? Let&apos;s Turn It Into Something Real.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted">
-          Share your store goals below or message us on WhatsApp—we&apos;ll reply with sensible questions
-          and next steps.
+          Whether you&apos;re starting a new business, improving an existing process, or looking to build
+          your next digital product, Dotsel is ready to help.
         </p>
+        <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted">
+          From strategy and design to development, deployment, and long-term support, we work with you to
+          create technology that solves real business problems and grows with you.
+        </p>
+        <ul className="mt-6 space-y-2 text-base font-medium text-ink">
+          {ctaClosingLines.map((line) => (
+            <li key={line}>{line}</li>
+          ))}
+        </ul>
+        <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-brand">{ctaTagline}</p>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
           <form
@@ -34,7 +52,8 @@ export default function ContactPage() {
               setStatus('success')
             }}
           >
-            <div className="space-y-5">
+            <h2 className="text-lg font-semibold text-ink">Start Your Project With Dotsel</h2>
+            <div className="mt-5 space-y-5">
               <label className="block">
                 <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted">Name</span>
                 <input
@@ -61,12 +80,13 @@ export default function ContactPage() {
               </label>
               <label className="block">
                 <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted">
-                  Store URL (optional)
+                  Phone
                 </span>
                 <input
-                  type="url"
-                  name="store"
-                  placeholder="https://yourstore.com"
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  placeholder="+91 …"
                   className="w-full rounded-lg border border-line bg-canvas px-3 py-2 text-sm text-ink outline-none ring-brand/30 transition focus:ring-2"
                 />
               </label>
@@ -78,7 +98,7 @@ export default function ContactPage() {
                   name="message"
                   required
                   rows={5}
-                  placeholder="Theme, migration, app, or Shopify Plus—what do you need and when?"
+                  placeholder="Tell us about your idea, requirements, and goals."
                   className="w-full rounded-lg border border-line bg-canvas px-3 py-2 text-sm text-ink outline-none ring-brand/30 transition focus:ring-2"
                 />
               </label>
@@ -98,9 +118,28 @@ export default function ContactPage() {
 
           <aside className="space-y-6">
             <div className="card p-6">
+              <h2 className="text-sm font-semibold text-ink">{companyName}</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                Adimali, Idukki, Kerala
+                <br />
+                Adimali, opposite to Union Bank
+                <br />
+                Idukki – 685561
+              </p>
+              <div className="mt-4 space-y-2 text-sm text-muted">
+                <a href={`https://${siteUrl}`} className="block transition hover:text-brand">
+                  {siteUrl}
+                </a>
+                <a href={`tel:${contactPhoneTel}`} className="block transition hover:text-brand">
+                  {contactPhone}
+                </a>
+              </div>
+            </div>
+
+            <div className="card p-6">
               <h2 className="text-sm font-semibold text-ink">WhatsApp</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted">
-                Prefer chat? Message our Shopify team—ideal for quick scoping.
+                Prefer chat? Message us on WhatsApp.
               </p>
               <a
                 href={whatsappUrl}
@@ -112,22 +151,12 @@ export default function ContactPage() {
               </a>
             </div>
 
-            <div className="card p-6">
-              <h2 className="text-sm font-semibold text-ink">What to include</h2>
-              <ul className="mt-3 list-inside list-disc space-y-2 text-sm text-muted">
-                <li>Current platform (Shopify, WooCommerce, etc.)</li>
-                <li>Theme, app, migration, or Plus needs</li>
-                <li>Catalog size and key integrations</li>
-                <li>Target launch date</li>
-              </ul>
-            </div>
-
             <Link
               to="/about"
               className="card block p-6 text-sm text-muted transition hover:border-brand"
             >
-              <span className="font-semibold text-brand">About our team →</span>
-              <span className="mt-2 block leading-relaxed">Meet the Shopify developers behind Dotsel.</span>
+              <span className="font-semibold text-brand">About us →</span>
+              <span className="mt-2 block leading-relaxed">Learn more about {companyName}.</span>
             </Link>
           </aside>
         </div>

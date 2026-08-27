@@ -1,5 +1,12 @@
 import { Link } from 'react-router-dom'
-import { socialLinks, whatsappUrl } from '../home-data'
+import {
+  companyName,
+  contactPhone,
+  contactPhoneTel,
+  siteUrl,
+  socialLinks,
+  whatsappUrl,
+} from '../home-data'
 
 export function SiteFooter() {
   return (
@@ -7,28 +14,17 @@ export function SiteFooter() {
       <div className="mx-auto w-full max-w-7xl rounded-2xl border border-line bg-surface-elevated p-6 sm:p-10">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.9fr_0.9fr]">
           <div>
-            <Link to="/" className="inline-flex w-[84px] shrink-0 items-center md:w-[92px]">
-              <img
-                src="/Dotsel.png"
-                alt="Dotsel Shopify developers"
-                className="h-6 w-auto object-contain sm:h-7 md:h-8"
-                loading="lazy"
-                decoding="async"
-              />
-            </Link>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
-              We are a team of Shopify developers—custom themes, apps, migrations, and Shopify Plus
-              builds for brands that want to grow on the platform.
+            <p className="text-sm font-semibold text-ink">{companyName}</p>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
+              From the first idea to ongoing growth, we stand beside your business every step of the way.
             </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {['Custom themes', 'Shopify apps', 'Migrations'].map((chip) => (
-                <span
-                  key={chip}
-                  className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-muted"
-                >
-                  {chip}
-                </span>
-              ))}
+            <div className="mt-4 space-y-1 text-sm text-muted">
+              <a href={`https://${siteUrl}`} className="block transition hover:text-brand">
+                {siteUrl}
+              </a>
+              <a href={`tel:${contactPhoneTel}`} className="block transition hover:text-brand">
+                {contactPhone}
+              </a>
             </div>
           </div>
 
@@ -38,16 +34,6 @@ export function SiteFooter() {
               <li>
                 <Link className="footer-link transition hover:text-brand" to="/solutions">
                   Services
-                </Link>
-              </li>
-              <li>
-                <Link className="footer-link transition hover:text-brand" to="/industries">
-                  Store types
-                </Link>
-              </li>
-              <li>
-                <Link className="footer-link transition hover:text-brand" to="/case-studies">
-                  Portfolio
                 </Link>
               </li>
               <li>
@@ -66,7 +52,7 @@ export function SiteFooter() {
           <div>
             <p className="section-label">Contact</p>
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              Need a quote or a quick consult? Message us on WhatsApp—we respond fast.
+              Have an idea? Let&apos;s turn it into something real.
             </p>
             <address className="mt-4 not-italic text-sm leading-relaxed text-muted">
               Adimali, opposite to Union Bank
@@ -117,7 +103,9 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-muted">© {new Date().getFullYear()} Dotsel. Shopify developers.</p>
+          <p className="text-xs text-muted">
+            © {new Date().getFullYear()} {companyName}
+          </p>
           <div className="flex flex-wrap gap-4 text-xs text-muted">
             <a className="footer-link transition hover:text-brand" href="#">
               Privacy

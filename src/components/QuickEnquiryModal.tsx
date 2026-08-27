@@ -151,10 +151,10 @@ export function QuickEnquiryModal() {
         <div className="border-b border-line px-5 pb-4 pt-5 sm:px-6 sm:pt-6">
           <p className="section-label">Quick enquiry</p>
           <h2 id="quick-enquiry-title" className="mt-2 text-xl font-bold text-ink sm:text-2xl">
-            Talk to our Shopify team
+            Start Your Project With Dotsel
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            Leave your details—we will follow up about your store project.
+            Leave your details—we will follow up about your project.
           </p>
         </div>
 

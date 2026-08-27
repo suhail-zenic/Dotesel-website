@@ -1,10 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useSiteScroll } from '../context/SiteScrollContext'
-import { whatsappUrl } from '../home-data'
+import { contactPhone, contactPhoneTel, whatsappUrl } from '../home-data'
 import { AmbientBackground } from './AmbientBackground'
 import { AnimatedOutlet } from './AnimatedOutlet'
-import { QuickEnquiryModal } from './QuickEnquiryModal'
-import { SiteFooter } from './SiteFooter'
 
 export function SiteLayout() {
   const { showBackTop, showStickyCta } = useSiteScroll()
@@ -49,15 +47,11 @@ export function SiteLayout() {
           >
             WhatsApp
           </a>
-          <a href="tel:8848260744" className="btn-primary inline-flex flex-1 py-3 text-sm">
-            Call now
+          <a href={`tel:${contactPhoneTel}`} className="btn-primary inline-flex flex-1 py-3 text-sm">
+            {contactPhone}
           </a>
         </div>
       </div>
-
-      <QuickEnquiryModal />
-
-      <SiteFooter />
 
       {showBackHomeBottom ? (
         <div className="mx-auto w-full max-w-7xl px-6 py-8 lg:px-10">
