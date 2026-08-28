@@ -223,7 +223,7 @@ export default function HomePage() {
                 {ctaTagline.replace(/ • /g, ' · ')}
               </p>
             </div>
-            <div className="relative z-10 mt-12 flex justify-end">
+            <div className="relative z-10 mt-12 hidden justify-end md:flex">
               <div className="flex items-center gap-3">
                 <a
                   href={whatsappUrl}
