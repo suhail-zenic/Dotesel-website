@@ -6,7 +6,7 @@ export function BrochureHero() {
     <section className="brochure-hero relative z-20 bg-transparent text-white sm:min-h-[100dvh]">
       <BrochureContours priority />
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-col px-8 pb-8 pt-10 sm:min-h-[100dvh] sm:px-12 sm:pb-12 sm:pt-12 lg:px-16 lg:pb-14 lg:pt-14">
-        <div className="flex items-center gap-4 sm:gap-5">
+        <div className="-ml-2 flex items-center gap-4 sm:-ml-6 sm:gap-5 lg:-ml-6">
           <img
             src="/Dotsel.png"
             alt=""
