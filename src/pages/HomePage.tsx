@@ -12,6 +12,7 @@ import {
   processSteps,
   services,
   technologies,
+  whatsappUrl,
   whyDotsel,
 } from '../home-data'
 
@@ -223,12 +224,25 @@ export default function HomePage() {
               </p>
             </div>
             <div className="relative z-10 mt-12 flex justify-end">
-              <a
-                href={`tel:${contactPhoneTel}`}
-                className="text-sm font-semibold text-white transition hover:text-[#3ecf8e] sm:text-base"
-              >
-                {contactPhone}
-              </a>
+              <div className="flex items-center gap-3">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hidden text-[#3ecf8e] transition hover:text-[#5eead4] md:inline-flex"
+                  aria-label="WhatsApp"
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.52 3.48A11.86 11.86 0 0 0 12.02 0C5.45 0 .1 5.35.1 11.92c0 2.1.55 4.16 1.6 5.97L0 24l6.3-1.65a11.86 11.86 0 0 0 5.72 1.46h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.17-3.43-8.41ZM12.02 21.4h-.01a9.9 9.9 0 0 1-5.06-1.39l-.36-.21-3.74.98 1-3.65-.24-.38a9.88 9.88 0 0 1-1.52-5.29c0-5.47 4.45-9.92 9.93-9.92a9.86 9.86 0 0 1 7.02 2.9 9.86 9.86 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.92 9.92Zm5.77-7.41c-.31-.16-1.82-.9-2.1-1-.28-.1-.49-.16-.7.16-.21.31-.8 1-.98 1.2-.18.21-.36.23-.67.08-.31-.16-1.29-.48-2.46-1.53-.91-.81-1.53-1.82-1.71-2.13-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.54-.08-.16-.7-1.68-.95-2.3-.25-.6-.5-.52-.7-.53h-.6c-.21 0-.54.08-.82.39-.28.31-1.08 1.05-1.08 2.56s1.1 2.97 1.25 3.18c.16.21 2.16 3.3 5.24 4.63.73.31 1.3.5 1.75.64.74.24 1.42.21 1.95.13.6-.09 1.82-.74 2.07-1.45.26-.7.26-1.31.18-1.45-.08-.13-.28-.21-.6-.36Z" />
+                  </svg>
+                </a>
+                <a
+                  href={`tel:${contactPhoneTel}`}
+                  className="text-sm font-semibold text-white transition hover:text-[#3ecf8e] sm:text-base"
+                >
+                  {contactPhone}
+                </a>
+              </div>
             </div>
           </section>
         </Reveal>
