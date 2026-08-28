@@ -10,11 +10,11 @@ export function BrochureHero() {
           <img
             src="/Dotsel.png"
             alt=""
-            className="h-16 w-16 shrink-0 object-contain sm:h-20 sm:w-20"
+            className="h-20 w-20 shrink-0 object-contain sm:h-20 sm:w-20"
             width={80}
             height={80}
           />
-          <p className="min-w-0 shrink text-[clamp(0.625rem,2.7vw,0.9375rem)] font-bold leading-none text-white whitespace-nowrap sm:max-w-md sm:text-xl sm:leading-snug lg:text-2xl">
+          <p className="min-w-0 shrink text-[clamp(0.6875rem,3.1vw,1.0625rem)] font-bold leading-none text-white whitespace-nowrap sm:max-w-md sm:text-xl sm:leading-snug lg:text-2xl">
             {companyName}
           </p>
         </div>
