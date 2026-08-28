@@ -23,7 +23,7 @@ export function SiteLayout() {
 
       <button
         type="button"
-        className={`back-top fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface text-lg font-semibold text-brand shadow-lg transition hover:border-brand hover:bg-brand-muted ${
+        className={`mobile-back-top back-top fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface text-lg font-semibold text-brand shadow-lg transition hover:border-brand hover:bg-brand-muted ${
           showBackTop ? 'back-top-visible' : ''
         }`}
         aria-label="Back to top"
@@ -38,16 +38,16 @@ export function SiteLayout() {
         }`}
         aria-hidden={!showStickyCta}
       >
-        <div className="glass-card mx-auto flex w-full max-w-md items-center gap-3 rounded-2xl border border-line p-3 shadow-xl">
+        <div className="mobile-action-dock mx-auto flex w-full max-w-md items-center gap-2">
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="btn-secondary inline-flex flex-1 py-3 text-sm"
+            className="mobile-action-btn mobile-action-btn--whatsapp"
           >
             WhatsApp
           </a>
-          <a href={`tel:${contactPhoneTel}`} className="btn-primary inline-flex flex-1 py-3 text-sm">
+          <a href={`tel:${contactPhoneTel}`} className="mobile-action-btn mobile-action-btn--call">
             {contactPhone}
           </a>
         </div>
