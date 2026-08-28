@@ -58,8 +58,18 @@ h3 {
 }
 
 main > section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 700px;
+  overflow: visible;
+}
+
+.brochure-hero,
+.who-we-are-section,
+.what-we-do-section,
+.our-approach-section,
+.faq-section,
+.why-dotsel-section,
+.lets-build-section {
+  overflow: visible;
+  clip-path: inset(-20% -14% -20% -14%);
 }
 
 * {
@@ -627,8 +637,6 @@ main > section {
 /* —— Hero —— */
 .brochure-hero {
   isolation: isolate;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 100dvh;
 }
 
 .brochure-contours {
@@ -958,6 +966,7 @@ main > section {
 
 /* —— Reveal —— */
 .reveal {
+  overflow: visible;
   opacity: 0;
   transform: translate3d(0, 28px, 0);
   transition:

@@ -3,9 +3,9 @@ import { BrochureContours } from './BrochureContours'
 
 export function BrochureHero() {
   return (
-    <section className="brochure-hero relative z-20 min-h-[100dvh] bg-transparent text-white">
+    <section className="brochure-hero relative z-20 bg-transparent text-white sm:min-h-[100dvh]">
       <BrochureContours priority />
-      <div className="relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-[1400px] flex-col px-8 pb-10 pt-10 sm:px-12 sm:pb-12 sm:pt-12 lg:px-16 lg:pb-14 lg:pt-14">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-col px-8 pb-8 pt-10 sm:min-h-[100dvh] sm:px-12 sm:pb-12 sm:pt-12 lg:px-16 lg:pb-14 lg:pt-14">
         <div className="flex items-center gap-4 sm:gap-5">
           <img
             src="/Dotsel.png"
@@ -14,7 +14,7 @@ export function BrochureHero() {
             width={80}
             height={80}
           />
-          <p className="max-w-md text-base font-bold leading-snug text-white sm:text-lg lg:text-xl">
+          <p className="min-w-0 shrink text-[clamp(0.625rem,2.7vw,0.9375rem)] font-bold leading-none text-white whitespace-nowrap sm:max-w-md sm:text-xl sm:leading-snug lg:text-2xl">
             {companyName}
           </p>
         </div>
@@ -32,7 +32,7 @@ export function BrochureHero() {
           </p>
         </div>
 
-        <div className="flex-1" aria-hidden />
+        <div className="hidden flex-1 sm:block" aria-hidden />
       </div>
     </section>
   )

@@ -24,11 +24,10 @@ export default function HomePage() {
     <>
       <BrochureHero />
 
-      <main className="relative mx-auto min-w-0 w-full max-w-7xl space-y-24 px-6 py-20 lg:space-y-28 lg:px-10">
-        <Reveal>
-          <section className="who-we-are-section relative -mx-6 px-6 py-16 lg:-mx-10 lg:px-10 lg:py-20">
-            <BrochureContours />
-            <div className="relative z-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <main className="relative z-[21] mx-auto min-w-0 w-full max-w-7xl space-y-24 px-6 pt-6 pb-20 sm:py-20 lg:space-y-28 lg:px-10 lg:py-20">
+        <section className="who-we-are-section relative -mx-6 px-6 pt-4 pb-16 sm:py-16 lg:-mx-10 lg:px-10 lg:py-20">
+          <BrochureContours />
+          <div className="relative z-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
               <div>
                 <h2 className="who-we-are-heading">Who We Are</h2>
                 <div className="mt-6 space-y-5 text-sm leading-relaxed text-white/90 sm:text-base sm:leading-relaxed">
@@ -69,7 +68,6 @@ export default function HomePage() {
               </div>
             </div>
           </section>
-        </Reveal>
 
         <section id="services" className="what-we-do-section relative -mx-6 px-6 py-16 lg:-mx-10 lg:px-10 lg:py-20">
           <BrochureContours />
