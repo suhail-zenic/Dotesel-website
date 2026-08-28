@@ -14,7 +14,7 @@ export function BrochureHero() {
             width={80}
             height={80}
           />
-          <p className="min-w-0 shrink text-[clamp(0.6875rem,3.1vw,1.0625rem)] font-bold leading-none text-white whitespace-nowrap sm:max-w-md sm:text-xl sm:leading-snug lg:text-2xl">
+          <p className="min-w-0 shrink text-[clamp(0.75rem,3.4vw,1.125rem)] font-extrabold leading-none text-white whitespace-nowrap sm:max-w-md sm:text-xl sm:font-bold sm:leading-snug lg:text-2xl">
             {companyName}
           </p>
         </div>
