@@ -400,7 +400,7 @@ export const socialLinks = {
 } as const
 
 export const whatsappUrl =
-  'https://wa.me/918848260744?text=Hi%20Dotsel%2C%20I%27d%20like%20to%20discuss%20a%20software%20project.'
+  'https://wa.me/917902531846?text=Hi%20Dotsel%2C%20I%27d%20like%20to%20discuss%20a%20software%20project.'
 
 /** @deprecated use storeTypes */
 export const industries = storeTypes
