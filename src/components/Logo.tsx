@@ -9,7 +9,7 @@ export function Logo({ tone = 'ink' }: { tone?: 'ink' | 'paper' }) {
           tone === 'paper' ? 'bg-paper' : 'bg-white ring-1 ring-line'
         }`}
       >
-        <img src="/Dotsel.png" alt="" className="h-full w-full scale-[1.85] object-contain" decoding="async" />
+        <img src="/dotsel-logo.webp" alt="" width={320} height={320} className="h-full w-full scale-[1.85] object-contain" decoding="async" />
       </span>
       <span className="leading-none">
         <span className={`block font-display text-lg font-bold tracking-tight ${tone === 'paper' ? 'text-paper' : 'text-ink'}`}>

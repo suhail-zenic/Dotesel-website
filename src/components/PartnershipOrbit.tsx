@@ -68,7 +68,7 @@ export function PartnershipOrbit() {
         <div className="orbit-core-pulse orbit-core-pulse-delay" />
         <div className="orbit-core-inner">
           <span className="flex h-[44%] w-[44%] items-center justify-center overflow-hidden rounded-2xl bg-white shadow-lg">
-            <img src="/Dotsel.png" alt="" className="h-full w-full scale-[1.85] object-contain" />
+            <img src="/dotsel-logo.webp" alt="" width={320} height={320} className="h-full w-full scale-[1.85] object-contain" decoding="async" />
           </span>
           <span className="mt-2 text-[9px] font-bold uppercase tracking-[0.25em] text-lime">Partner</span>
         </div>

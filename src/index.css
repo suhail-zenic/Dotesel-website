@@ -129,6 +129,8 @@ img {
   border-radius: 9999px;
   filter: blur(110px);
   animation: orbFloat 22s ease-in-out infinite;
+  /* Rasterise the blur once and move it on the GPU instead of repainting each frame. */
+  will-change: transform;
 }
 
 .ambient-orb-a {
