@@ -78,11 +78,11 @@ export function PortfolioSection({ showViewAll = true, compact = false }: Portfo
     <section id="portfolio" className={compact ? '' : 'scroll-mt-24'}>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="section-label">🌐 Portfolio &amp; previous works</p>
+          <p className="section-label">Portfolio &amp; previous works</p>
           <h2
             className={`mt-2 font-bold tracking-tight text-ink ${compact ? 'text-2xl sm:text-3xl' : 'text-3xl sm:text-4xl'}`}
           >
-            Live Shopify stores we&apos;ve built
+            Live projects we&apos;ve built
           </h2>
           {!compact ? (
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">

@@ -5,7 +5,7 @@ import { storeTypeContent, storeTypes } from '../home-data'
 
 export default function IndustriesPage() {
   useEffect(() => {
-    document.title = 'Store Types | Dotsel Shopify Developers'
+    document.title = 'E-commerce | Dotsel Automation & Venture'
   }, [])
 
   return (

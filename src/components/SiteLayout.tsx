@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useSiteScroll } from '../context/SiteScrollContext'
-import { whatsappUrl } from '../home-data'
+import { contactPhoneHref, whatsappUrl } from '../home-data'
 import { AmbientBackground } from './AmbientBackground'
 import { AnimatedOutlet } from './AnimatedOutlet'
 import { QuickEnquiryModal } from './QuickEnquiryModal'
@@ -25,7 +25,7 @@ export function SiteLayout() {
 
       <button
         type="button"
-        className={`back-top fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface text-lg font-semibold text-brand shadow-lg transition hover:border-brand hover:bg-brand-muted ${
+        className={`back-top fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-night text-lg font-semibold text-lime shadow-lg transition hover:bg-brand hover:text-white ${
           showBackTop ? 'back-top-visible' : ''
         }`}
         aria-label="Back to top"
@@ -40,7 +40,7 @@ export function SiteLayout() {
         }`}
         aria-hidden={!showStickyCta}
       >
-        <div className="glass-card mx-auto flex w-full max-w-md items-center gap-3 rounded-2xl border border-line p-3 shadow-xl">
+        <div className="glass-card mx-auto flex w-full max-w-md items-center gap-2 rounded-full border border-line p-2 shadow-xl">
           <a
             href={whatsappUrl}
             target="_blank"
@@ -49,15 +49,13 @@ export function SiteLayout() {
           >
             WhatsApp
           </a>
-          <a href="tel:8848260744" className="btn-primary inline-flex flex-1 py-3 text-sm">
+          <a href={contactPhoneHref} className="btn-primary inline-flex flex-1 py-3 text-sm">
             Call now
           </a>
         </div>
       </div>
 
       <QuickEnquiryModal />
-
-      <SiteFooter />
 
       {showBackHomeBottom ? (
         <div className="mx-auto w-full max-w-7xl px-6 py-8 lg:px-10">
@@ -70,6 +68,9 @@ export function SiteLayout() {
           </Link>
         </div>
       ) : null}
+
+      <SiteFooter />
+
     </div>
   )
 }

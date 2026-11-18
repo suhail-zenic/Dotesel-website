@@ -11,7 +11,7 @@ export function FaqItem({ question, answer, defaultOpen = false }: FaqItemProps)
   const [open, setOpen] = useState(defaultOpen)
 
   return (
-    <article className="faq-item overflow-hidden rounded-xl border border-line bg-canvas/50 transition-colors duration-300 hover:border-brand/30">
+    <article className="faq-item overflow-hidden rounded-2xl border border-line bg-canvas/50 transition-colors duration-300 hover:border-brand/30">
       <button
         type="button"
         className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
@@ -27,8 +27,8 @@ export function FaqItem({ question, answer, defaultOpen = false }: FaqItemProps)
         </span>
       </button>
       <div className={`faq-body ${open ? 'faq-body-open' : ''}`}>
-        <div className="faq-body-inner border-t border-line/80 px-5 pb-4 pt-0 text-sm leading-relaxed text-muted sm:text-base">
-          <div className="pt-4">{answer}</div>
+        <div className="faq-body-inner text-sm leading-relaxed text-muted sm:text-base">
+          <div className="border-t border-line/80 px-5 pb-5 pt-4">{answer}</div>
         </div>
       </div>
     </article>

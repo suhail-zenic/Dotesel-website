@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SiteHeader } from '../components/SiteHeader'
-import { whatsappUrl } from '../home-data'
+import { contactPhone, contactPhoneHref, whatsappUrl } from '../home-data'
 
 export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'success'>('idle')
 
   useEffect(() => {
-    document.title = 'Contact | Dotsel Shopify Developers'
+    document.title = 'Contact | Dotsel Automation & Venture'
   }, [])
 
   return (
@@ -19,11 +19,15 @@ export default function ContactPage() {
       <main className="mx-auto min-w-0 w-full max-w-7xl px-6 py-16 lg:px-10">
         <p className="section-label">Contact</p>
         <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
-          Talk to our Shopify developers.
+          Have an idea? Let's turn it into something real.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted">
-          Share your store goals below or message us on WhatsApp—we&apos;ll reply with sensible questions
-          and next steps.
+          Whether you&apos;re starting a new business, improving an existing process, or building your next
+          digital product, Dotsel is ready to help. Call us on{' '}
+          <a href={contactPhoneHref} className="font-semibold text-brand hover:text-brand-hover">
+            {contactPhone}
+          </a>{' '}
+          or share your idea below.
         </p>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
@@ -61,12 +65,12 @@ export default function ContactPage() {
               </label>
               <label className="block">
                 <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted">
-                  Store URL (optional)
+                  Company / website (optional)
                 </span>
                 <input
-                  type="url"
-                  name="store"
-                  placeholder="https://yourstore.com"
+                  type="text"
+                  name="company"
+                  placeholder="Your company or website"
                   className="w-full rounded-lg border border-line bg-canvas px-3 py-2 text-sm text-ink outline-none ring-brand/30 transition focus:ring-2"
                 />
               </label>
@@ -78,7 +82,7 @@ export default function ContactPage() {
                   name="message"
                   required
                   rows={5}
-                  placeholder="Theme, migration, app, or Shopify Plus—what do you need and when?"
+                  placeholder="Software, mobile app, website, AI, or CRM/ERP—what would you like to build?"
                   className="w-full rounded-lg border border-line bg-canvas px-3 py-2 text-sm text-ink outline-none ring-brand/30 transition focus:ring-2"
                 />
               </label>
@@ -100,7 +104,7 @@ export default function ContactPage() {
             <div className="card p-6">
               <h2 className="text-sm font-semibold text-ink">WhatsApp</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted">
-                Prefer chat? Message our Shopify team—ideal for quick scoping.
+                Prefer chat? Message our team—ideal for a quick first conversation.
               </p>
               <a
                 href={whatsappUrl}
@@ -115,10 +119,10 @@ export default function ContactPage() {
             <div className="card p-6">
               <h2 className="text-sm font-semibold text-ink">What to include</h2>
               <ul className="mt-3 list-inside list-disc space-y-2 text-sm text-muted">
-                <li>Current platform (Shopify, WooCommerce, etc.)</li>
-                <li>Theme, app, migration, or Plus needs</li>
-                <li>Catalog size and key integrations</li>
-                <li>Target launch date</li>
+                <li>Your business and who your users are</li>
+                <li>The problem you want to solve</li>
+                <li>Any existing software or systems</li>
+                <li>Your ideal timeline</li>
               </ul>
             </div>
 
@@ -127,7 +131,7 @@ export default function ContactPage() {
               className="card block p-6 text-sm text-muted transition hover:border-brand"
             >
               <span className="font-semibold text-brand">About our team →</span>
-              <span className="mt-2 block leading-relaxed">Meet the Shopify developers behind Dotsel.</span>
+              <span className="mt-2 block leading-relaxed">Learn how we work and what we believe.</span>
             </Link>
           </aside>
         </div>

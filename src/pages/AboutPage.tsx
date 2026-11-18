@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Icon } from '../components/Icon'
+import { Reveal } from '../components/Reveal'
 import { SiteHeader } from '../components/SiteHeader'
-import { innovationPillars, siteTagline, stats } from '../home-data'
+import { beliefs, companyFacts, processSteps, whoWeAre, whyDotsel } from '../home-data'
 
 export default function AboutPage() {
   useEffect(() => {
-    document.title = 'About | Dotsel Shopify Developers'
+    document.title = 'About | Dotsel Automation & Venture'
   }, [])
 
   return (
@@ -15,83 +17,94 @@ export default function AboutPage() {
       </div>
 
       <main className="mx-auto min-w-0 w-full max-w-7xl px-6 py-16 lg:px-10">
-        <p className="section-label">About Dotsel</p>
-        <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
-          We are a team of Shopify developers.
+        <p className="section-label section-label-line">Who We Are</p>
+        <h1 className="mt-4 max-w-4xl text-balance text-4xl font-extrabold leading-tight tracking-tight text-ink sm:text-6xl">
+          Beyond software. <span className="text-gradient">Built for long-term partnerships.</span>
         </h1>
-        <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted">{siteTagline}</p>
-        <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted">
-          No generalist agency overhead—just Shopify specialists who understand themes, apps,
-          checkout, and what it takes to run a store day to day.
-        </p>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((item) => (
-            <div key={item.label} className="card px-5 py-6 text-center">
-              <p className="text-2xl font-bold text-brand">{item.value}</p>
-              <p className="mt-1 text-sm text-muted">{item.label}</p>
-            </div>
-          ))}
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-14">
+          <div className="space-y-5 text-base leading-relaxed text-muted sm:text-lg">
+            {whoWeAre.map((para, i) => (
+              <p key={i} className={i === 0 ? 'text-ink' : undefined}>
+                {para}
+              </p>
+            ))}
+          </div>
+          <dl className="grid grid-cols-2 gap-3 self-start">
+            {companyFacts.map((fact) => (
+              <div key={fact.label} className="fact-tile rounded-2xl border border-line bg-surface/70 px-5 py-6">
+                <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">{fact.label}</dt>
+                <dd className="mt-2 font-display text-2xl font-bold text-brand">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        <section className="mt-20 grid gap-10 rounded-2xl border border-line bg-surface p-8 sm:p-10 lg:grid-cols-[1fr_1.1fr]">
-          <div>
-            <h2 className="text-2xl font-bold text-ink sm:text-3xl">How we work</h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
-              Discovery on your catalog, integrations, and goals—then theme, app, or migration work
-              in visible milestones with staging stores you can review.
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
-              We communicate in plain language, document decisions, and leave you with Shopify
-              assets your team can maintain or hand to any strong Shopify partner.
-            </p>
-          </div>
-          <ul className="space-y-4 text-sm text-muted sm:text-base">
-            <li className="flex gap-3">
-              <span className="mt-1 text-brand" aria-hidden>
-                ●
-              </span>
-              <span>Online Store 2.0 themes built for speed and conversion.</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="mt-1 text-brand" aria-hidden>
-                ●
-              </span>
-              <span>Apps and checkout extensions using Shopify&apos;s current APIs.</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="mt-1 text-brand" aria-hidden>
-                ●
-              </span>
-              <span>Migrations with SEO, redirects, and data integrity handled properly.</span>
-            </li>
-          </ul>
+        <Reveal className="mt-20">
+          <section className="belief-panel relative overflow-hidden rounded-3xl p-8 sm:p-12">
+            <p className="section-label relative">What We Believe</p>
+            <ul className="relative mt-8 grid gap-4 sm:grid-cols-2">
+              {beliefs.map((belief, i) => (
+                <li
+                  key={belief}
+                  className="belief-item flex items-start gap-4 rounded-2xl border border-white/5 bg-canvas/40 p-5"
+                  style={{ transitionDelay: `${i * 80}ms` }}
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand font-display text-sm font-extrabold text-canvas">
+                    {i + 1}
+                  </span>
+                  <span className="pt-1 text-base font-medium text-ink">{belief}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </Reveal>
+
+        <section className="mt-20">
+          <p className="section-label section-label-line">Our Approach</p>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            From understanding to long-term growth.
+          </h2>
+          <ol className="mt-10 grid gap-4 md:grid-cols-5">
+            {processSteps.map((step) => (
+              <li key={step.step} className="rounded-2xl border border-line bg-surface/70 p-5">
+                <span className="font-display text-sm font-extrabold text-brand">{step.step}</span>
+                <h3 className="mt-2 text-lg font-bold text-ink">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{step.body}</p>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        <section className="mt-16">
-          <h2 className="text-2xl font-bold text-ink sm:text-3xl">What we stand for</h2>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {innovationPillars.map((pillar) => (
-              <article key={pillar.title} className="card lift-card p-6">
-                <h3 className="text-lg font-semibold text-ink">{pillar.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">{pillar.description}</p>
+        <section className="mt-20">
+          <p className="section-label section-label-line">Why Dotsel?</p>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            More than a software team. Your technology partner.
+          </h2>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {whyDotsel.map((item) => (
+              <article key={item.title} className="card lift-card p-6">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-muted text-brand">
+                  <Icon name={item.icon} className="h-5 w-5" />
+                </span>
+                <h3 className="mt-5 text-lg font-bold text-ink">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">{item.description}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="cta-panel mt-16 rounded-2xl p-8 sm:p-10">
-          <h2 className="text-2xl font-bold text-ink sm:text-3xl">Tell us about your Shopify project</h2>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
-            Share your store URL, timeline, and what you need—we&apos;ll reply with an honest view on
-            fit and next steps.
+        <section className="cta-panel mt-20 rounded-3xl p-8 sm:p-12">
+          <h2 className="relative text-2xl font-extrabold text-ink sm:text-4xl">Have an idea? Let&apos;s turn it into something real.</h2>
+          <p className="relative mt-4 max-w-2xl text-base leading-relaxed text-muted">
+            Let&apos;s discuss your idea. Let&apos;s build the solution. Let&apos;s grow together.
           </p>
-          <div className="mt-6 flex flex-wrap gap-4">
+          <div className="relative mt-8 flex flex-wrap gap-4">
             <Link to="/contact" className="btn-primary px-7 py-3 text-sm">
-              Contact us
+              Start your project
             </Link>
-            <Link to="/" className="btn-secondary px-7 py-3 text-sm">
-              Back to home
+            <Link to="/solutions" className="btn-secondary px-7 py-3 text-sm">
+              Explore services
             </Link>
           </div>
         </section>

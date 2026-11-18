@@ -1,17 +1,16 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { mainNavLinks } from '../home-data'
+import { contactPhoneHref, mainNavLinks } from '../home-data'
 import { useSiteScroll } from '../context/SiteScrollContext'
+import { Logo } from './Logo'
 
 type SiteHeaderProps = {
   variant?: 'hero' | 'minimal'
 }
 
-export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
-  const { headerElevated, menuOpen, setMenuOpen } = useSiteScroll()
+export function SiteHeader(_props: SiteHeaderProps) {
+  const { menuOpen, setMenuOpen } = useSiteScroll()
   const location = useLocation()
-  const useGlass = variant === 'minimal' || headerElevated || variant === 'hero'
-
   const activePath = location.pathname
 
   useEffect(() => {
@@ -20,22 +19,12 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
 
   return (
     <>
-      <header
-        className={`relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-3 transition-all duration-300 motion-reduce:transition-none sm:py-4 lg:px-10 ${
-          useGlass ? 'glass-nav mt-3 rounded-2xl' : 'mt-3'
-        }`}
-      >
-        <Link to="/" className="inline-flex w-[88px] shrink-0 items-center md:w-[96px]">
-          <img
-            src="/Dotsel.png"
-            alt="Dotsel Shopify developers"
-            className="h-6 w-auto object-contain sm:h-7 md:h-8"
-            loading="eager"
-            decoding="async"
-          />
-        </Link>
+      <header className="glass-nav relative z-20 mx-4 mt-4 flex items-center justify-between gap-4 rounded-full py-2 pl-3 pr-2 sm:mx-6 lg:mx-auto lg:max-w-6xl">
+        <div className="pl-1">
+          <Logo />
+        </div>
 
-        <nav className="hidden flex-1 items-center justify-center gap-8 text-sm font-medium md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-1 text-sm font-medium md:flex" aria-label="Primary">
           {mainNavLinks.map((link) => {
             const isActive = activePath === link.to
             return (
@@ -43,9 +32,7 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
                 key={link.label}
                 to={link.to}
                 aria-current={isActive ? 'page' : undefined}
-                className={`nav-link transition-colors duration-200 hover:text-brand ${
-                  isActive ? 'nav-link-active text-brand' : 'text-muted'
-                }`}
+                className={`nav-link ${isActive ? 'nav-link-active' : 'text-ink'}`}
               >
                 {link.label}
               </Link>
@@ -53,23 +40,32 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
           })}
         </nav>
 
-        <a href="tel:8848260744" className="btn-primary hidden shrink-0 px-5 py-2 text-sm md:inline-flex">
-          Call now
-        </a>
+        <div className="hidden md:block">
+          <a href={contactPhoneHref} className="btn-dark px-5 py-2.5 text-sm">
+            <span className="h-2 w-2 rounded-full bg-lime" aria-hidden />
+            Let&apos;s talk
+          </a>
+        </div>
 
         <button
           type="button"
           aria-expanded={menuOpen}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          className="inline-flex rounded-xl border border-line bg-surface-elevated/80 px-3 py-2 text-sm text-ink backdrop-blur md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-night text-paper md:hidden"
           onClick={() => setMenuOpen((prev) => !prev)}
         >
-          {menuOpen ? 'Close' : 'Menu'}
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+            {menuOpen ? (
+              <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+            ) : (
+              <path d="M4 8h16M4 16h10" strokeLinecap="round" />
+            )}
+          </svg>
         </button>
       </header>
 
       {menuOpen ? (
-        <div className="mobile-menu-enter relative z-20 mx-6 mt-2 rounded-2xl border border-line glass-card p-4 shadow-2xl md:hidden">
+        <div className="mobile-menu-enter theme-night relative z-20 mx-4 mt-2 rounded-3xl p-3 shadow-2xl sm:mx-6 md:hidden">
           <div className="flex flex-col gap-1">
             {mainNavLinks.map((link) => {
               const isActive = activePath === link.to
@@ -78,15 +74,15 @@ export function SiteHeader({ variant = 'minimal' }: SiteHeaderProps) {
                   key={link.label}
                   to={link.to}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
-                    isActive ? 'bg-brand-muted text-brand' : 'text-ink hover:bg-surface-elevated'
+                  className={`rounded-2xl px-4 py-3.5 font-display text-xl font-semibold transition-colors ${
+                    isActive ? 'bg-lime text-night' : 'text-ink hover:bg-surface-elevated'
                   }`}
                 >
                   {link.label}
                 </Link>
               )
             })}
-            <a href="tel:8848260744" className="btn-primary mt-2 py-3 text-center text-sm">
+            <a href={contactPhoneHref} className="btn-primary mt-2 py-3.5 text-sm">
               Call now
             </a>
           </div>

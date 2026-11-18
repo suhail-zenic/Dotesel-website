@@ -7,7 +7,7 @@ import { caseStudies, portfolioCategories } from '../home-data'
 
 export default function CaseStudiesPage() {
   useEffect(() => {
-    document.title = 'Portfolio | Dotsel Shopify Developers'
+    document.title = 'Our Work | Dotsel Automation & Venture'
   }, [])
 
   const totalStores = portfolioCategories.reduce((n, c) => n + c.projects.length, 0)
@@ -19,12 +19,12 @@ export default function CaseStudiesPage() {
         <div className="hero-glow -right-20 top-0 h-64 w-64 bg-brand/15" aria-hidden />
         <SiteHeader variant="minimal" />
         <div className="relative mx-auto max-w-7xl px-6 pb-14 pt-4 lg:px-10">
-          <p className="section-label">🌐 Portfolio &amp; previous works</p>
+          <p className="section-label">Portfolio &amp; previous works</p>
           <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
-            Stores we&apos;ve built for brands that sell.
+            Work we&apos;ve built with our partners.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted">
-            {totalStores} live Shopify stores across clothing, food &amp; beverage, and home decor—each
+            {totalStores} live e-commerce projects across clothing, food &amp; beverage, and home decor—each
             link opens the real site in a new tab.
           </p>
         </div>
@@ -60,14 +60,14 @@ export default function CaseStudiesPage() {
         <section className="rounded-2xl border border-line bg-surface-elevated p-8 sm:p-10">
           <h2 className="text-2xl font-bold text-ink sm:text-3xl">How we measure success</h2>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
-            Before we write Liquid or ship an app, we agree on signals: conversion, speed, support load,
-            or manual steps removed.
+            Before we write code, we agree on what success looks like for your business—and we keep
+            improving after launch.
           </p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
             {[
               'Baseline metrics captured in discovery',
               'Staging reviews before every major milestone',
-              'Post-launch iteration based on real store data',
+              'Ongoing support and improvements after launch',
             ].map((line) => (
               <li key={line} className="flex gap-3 text-sm text-muted sm:text-base">
                 <span className="mt-1 text-brand" aria-hidden>
@@ -80,9 +80,9 @@ export default function CaseStudiesPage() {
         </section>
 
         <section className="cta-panel rounded-2xl p-8 sm:p-10">
-          <h2 className="text-2xl font-bold text-ink sm:text-3xl">Want your store in our portfolio?</h2>
+          <h2 className="text-2xl font-bold text-ink sm:text-3xl">Want to build something together?</h2>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
-            Tell us about your brand—we&apos;ll scope a Shopify build and share an honest timeline.
+            Tell us about your idea—we&apos;ll understand your needs and share an honest plan.
           </p>
           <div className="mt-6 flex flex-wrap gap-4">
             <Link to="/contact" className="btn-primary px-7 py-3 text-sm">
