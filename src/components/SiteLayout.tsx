@@ -3,7 +3,6 @@ import { useSiteScroll } from '../context/SiteScrollContext'
 import { contactPhoneHref, whatsappUrl } from '../home-data'
 import { AmbientBackground } from './AmbientBackground'
 import { AnimatedOutlet } from './AnimatedOutlet'
-import { QuickEnquiryModal } from './QuickEnquiryModal'
 import { SiteFooter } from './SiteFooter'
 
 export function SiteLayout() {
@@ -55,7 +54,6 @@ export function SiteLayout() {
         </div>
       </div>
 
-      <QuickEnquiryModal />
 
       {showBackHomeBottom ? (
         <div className="mx-auto w-full max-w-7xl px-6 py-8 lg:px-10">
